@@ -1,0 +1,485 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		328212DC183E0C7A009FF634 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328212DB183E0C79009FF634 /* Foundation.framework */; };
+		328212DE183E0C7A009FF634 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328212DD183E0C7A009FF634 /* CoreGraphics.framework */; };
+		328212E0183E0C7A009FF634 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328212DF183E0C7A009FF634 /* UIKit.framework */; };
+		328212E6183E0C7A009FF634 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 328212E4183E0C7A009FF634 /* InfoPlist.strings */; };
+		328212E8183E0C7A009FF634 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 328212E7183E0C7A009FF634 /* main.m */; };
+		328212EC183E0C7A009FF634 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 328212EB183E0C7A009FF634 /* AppDelegate.m */; };
+		328212F4183E0C7A009FF634 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 328212F3183E0C7A009FF634 /* Images.xcassets */; };
+		328212FB183E0C7A009FF634 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328212FA183E0C7A009FF634 /* XCTest.framework */; };
+		328212FC183E0C7A009FF634 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328212DB183E0C79009FF634 /* Foundation.framework */; };
+		328212FD183E0C7A009FF634 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328212DF183E0C7A009FF634 /* UIKit.framework */; };
+		32821305183E0C7A009FF634 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32821303183E0C7A009FF634 /* InfoPlist.strings */; };
+		32821307183E0C7A009FF634 /* BluetoothClockTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32821306183E0C7A009FF634 /* BluetoothClockTests.m */; };
+		32821318183E0C8C009FF634 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32821311183E0C8C009FF634 /* TabBarViewController.m */; };
+		32821319183E0C8C009FF634 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32821313183E0C8C009FF634 /* FirstViewController.m */; };
+		3282131A183E0C8C009FF634 /* AddClockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32821315183E0C8C009FF634 /* AddClockViewController.m */; };
+		3282131B183E0C8C009FF634 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32821317183E0C8C009FF634 /* SecondViewController.m */; };
+		3282131D183E0C95009FF634 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3282131C183E0C95009FF634 /* Main.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		328212FE183E0C7A009FF634 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 328212D0183E0C79009FF634 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 328212D7183E0C79009FF634;
+			remoteInfo = BluetoothClock;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		328212D8183E0C79009FF634 /* BluetoothClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BluetoothClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		328212DB183E0C79009FF634 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		328212DD183E0C7A009FF634 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		328212DF183E0C7A009FF634 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		328212E3183E0C7A009FF634 /* BluetoothClock-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BluetoothClock-Info.plist"; sourceTree = "<group>"; };
+		328212E5183E0C7A009FF634 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		328212E7183E0C7A009FF634 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		328212E9183E0C7A009FF634 /* BluetoothClock-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BluetoothClock-Prefix.pch"; sourceTree = "<group>"; };
+		328212EA183E0C7A009FF634 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		328212EB183E0C7A009FF634 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		328212F3183E0C7A009FF634 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		328212F9183E0C7A009FF634 /* BluetoothClockTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BluetoothClockTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		328212FA183E0C7A009FF634 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		32821302183E0C7A009FF634 /* BluetoothClockTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BluetoothClockTests-Info.plist"; sourceTree = "<group>"; };
+		32821304183E0C7A009FF634 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		32821306183E0C7A009FF634 /* BluetoothClockTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BluetoothClockTests.m; sourceTree = "<group>"; };
+		32821310183E0C8C009FF634 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
+		32821311183E0C8C009FF634 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
+		32821312183E0C8C009FF634 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		32821313183E0C8C009FF634 /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		32821314183E0C8C009FF634 /* AddClockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddClockViewController.h; sourceTree = "<group>"; };
+		32821315183E0C8C009FF634 /* AddClockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddClockViewController.m; sourceTree = "<group>"; };
+		32821316183E0C8C009FF634 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		32821317183E0C8C009FF634 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		3282131C183E0C95009FF634 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		328212D5183E0C79009FF634 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				328212DE183E0C7A009FF634 /* CoreGraphics.framework in Frameworks */,
+				328212E0183E0C7A009FF634 /* UIKit.framework in Frameworks */,
+				328212DC183E0C7A009FF634 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		328212F6183E0C7A009FF634 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				328212FB183E0C7A009FF634 /* XCTest.framework in Frameworks */,
+				328212FD183E0C7A009FF634 /* UIKit.framework in Frameworks */,
+				328212FC183E0C7A009FF634 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		328212CF183E0C79009FF634 = {
+			isa = PBXGroup;
+			children = (
+				328212E1183E0C7A009FF634 /* BluetoothClock */,
+				32821300183E0C7A009FF634 /* BluetoothClockTests */,
+				328212DA183E0C79009FF634 /* Frameworks */,
+				328212D9183E0C79009FF634 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		328212D9183E0C79009FF634 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				328212D8183E0C79009FF634 /* BluetoothClock.app */,
+				328212F9183E0C7A009FF634 /* BluetoothClockTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		328212DA183E0C79009FF634 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				328212DB183E0C79009FF634 /* Foundation.framework */,
+				328212DD183E0C7A009FF634 /* CoreGraphics.framework */,
+				328212DF183E0C7A009FF634 /* UIKit.framework */,
+				328212FA183E0C7A009FF634 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		328212E1183E0C7A009FF634 /* BluetoothClock */ = {
+			isa = PBXGroup;
+			children = (
+				328212EA183E0C7A009FF634 /* AppDelegate.h */,
+				328212EB183E0C7A009FF634 /* AppDelegate.m */,
+				3282131C183E0C95009FF634 /* Main.storyboard */,
+				32821310183E0C8C009FF634 /* TabBarViewController.h */,
+				32821311183E0C8C009FF634 /* TabBarViewController.m */,
+				32821312183E0C8C009FF634 /* FirstViewController.h */,
+				32821313183E0C8C009FF634 /* FirstViewController.m */,
+				32821314183E0C8C009FF634 /* AddClockViewController.h */,
+				32821315183E0C8C009FF634 /* AddClockViewController.m */,
+				32821316183E0C8C009FF634 /* SecondViewController.h */,
+				32821317183E0C8C009FF634 /* SecondViewController.m */,
+				328212F3183E0C7A009FF634 /* Images.xcassets */,
+				328212E2183E0C7A009FF634 /* Supporting Files */,
+			);
+			path = BluetoothClock;
+			sourceTree = "<group>";
+		};
+		328212E2183E0C7A009FF634 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				328212E3183E0C7A009FF634 /* BluetoothClock-Info.plist */,
+				328212E4183E0C7A009FF634 /* InfoPlist.strings */,
+				328212E7183E0C7A009FF634 /* main.m */,
+				328212E9183E0C7A009FF634 /* BluetoothClock-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		32821300183E0C7A009FF634 /* BluetoothClockTests */ = {
+			isa = PBXGroup;
+			children = (
+				32821306183E0C7A009FF634 /* BluetoothClockTests.m */,
+				32821301183E0C7A009FF634 /* Supporting Files */,
+			);
+			path = BluetoothClockTests;
+			sourceTree = "<group>";
+		};
+		32821301183E0C7A009FF634 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				32821302183E0C7A009FF634 /* BluetoothClockTests-Info.plist */,
+				32821303183E0C7A009FF634 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		328212D7183E0C79009FF634 /* BluetoothClock */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3282130A183E0C7A009FF634 /* Build configuration list for PBXNativeTarget "BluetoothClock" */;
+			buildPhases = (
+				328212D4183E0C79009FF634 /* Sources */,
+				328212D5183E0C79009FF634 /* Frameworks */,
+				328212D6183E0C79009FF634 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BluetoothClock;
+			productName = BluetoothClock;
+			productReference = 328212D8183E0C79009FF634 /* BluetoothClock.app */;
+			productType = "com.apple.product-type.application";
+		};
+		328212F8183E0C7A009FF634 /* BluetoothClockTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3282130D183E0C7A009FF634 /* Build configuration list for PBXNativeTarget "BluetoothClockTests" */;
+			buildPhases = (
+				328212F5183E0C7A009FF634 /* Sources */,
+				328212F6183E0C7A009FF634 /* Frameworks */,
+				328212F7183E0C7A009FF634 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				328212FF183E0C7A009FF634 /* PBXTargetDependency */,
+			);
+			name = BluetoothClockTests;
+			productName = BluetoothClockTests;
+			productReference = 328212F9183E0C7A009FF634 /* BluetoothClockTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		328212D0183E0C79009FF634 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = JimmyHo;
+				TargetAttributes = {
+					328212F8183E0C7A009FF634 = {
+						TestTargetID = 328212D7183E0C79009FF634;
+					};
+				};
+			};
+			buildConfigurationList = 328212D3183E0C79009FF634 /* Build configuration list for PBXProject "BluetoothClock" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 328212CF183E0C79009FF634;
+			productRefGroup = 328212D9183E0C79009FF634 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				328212D7183E0C79009FF634 /* BluetoothClock */,
+				328212F8183E0C7A009FF634 /* BluetoothClockTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		328212D6183E0C79009FF634 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3282131D183E0C95009FF634 /* Main.storyboard in Resources */,
+				328212F4183E0C7A009FF634 /* Images.xcassets in Resources */,
+				328212E6183E0C7A009FF634 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		328212F7183E0C7A009FF634 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32821305183E0C7A009FF634 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		328212D4183E0C79009FF634 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3282131B183E0C8C009FF634 /* SecondViewController.m in Sources */,
+				3282131A183E0C8C009FF634 /* AddClockViewController.m in Sources */,
+				328212EC183E0C7A009FF634 /* AppDelegate.m in Sources */,
+				32821318183E0C8C009FF634 /* TabBarViewController.m in Sources */,
+				328212E8183E0C7A009FF634 /* main.m in Sources */,
+				32821319183E0C8C009FF634 /* FirstViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		328212F5183E0C7A009FF634 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32821307183E0C7A009FF634 /* BluetoothClockTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		328212FF183E0C7A009FF634 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 328212D7183E0C79009FF634 /* BluetoothClock */;
+			targetProxy = 328212FE183E0C7A009FF634 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		328212E4183E0C7A009FF634 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				328212E5183E0C7A009FF634 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		32821303183E0C7A009FF634 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				32821304183E0C7A009FF634 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		32821308183E0C7A009FF634 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		32821309183E0C7A009FF634 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3282130B183E0C7A009FF634 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BluetoothClock/BluetoothClock-Prefix.pch";
+				INFOPLIST_FILE = "BluetoothClock/BluetoothClock-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3282130C183E0C7A009FF634 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BluetoothClock/BluetoothClock-Prefix.pch";
+				INFOPLIST_FILE = "BluetoothClock/BluetoothClock-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		3282130E183E0C7A009FF634 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BluetoothClock.app/BluetoothClock";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BluetoothClock/BluetoothClock-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "BluetoothClockTests/BluetoothClockTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		3282130F183E0C7A009FF634 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BluetoothClock.app/BluetoothClock";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BluetoothClock/BluetoothClock-Prefix.pch";
+				INFOPLIST_FILE = "BluetoothClockTests/BluetoothClockTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		328212D3183E0C79009FF634 /* Build configuration list for PBXProject "BluetoothClock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32821308183E0C7A009FF634 /* Debug */,
+				32821309183E0C7A009FF634 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3282130A183E0C7A009FF634 /* Build configuration list for PBXNativeTarget "BluetoothClock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3282130B183E0C7A009FF634 /* Debug */,
+				3282130C183E0C7A009FF634 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3282130D183E0C7A009FF634 /* Build configuration list for PBXNativeTarget "BluetoothClockTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3282130E183E0C7A009FF634 /* Debug */,
+				3282130F183E0C7A009FF634 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 328212D0183E0C79009FF634 /* Project object */;
+}
