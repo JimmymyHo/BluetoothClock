@@ -10,4 +10,7 @@
 
 @interface SecondViewController : UIViewController
 
+@property (nonatomic, strong) IBOutlet UILabel *connectLabel;
+@property (nonatomic, strong) IBOutlet UILabel *distantLabel;
+
 @end

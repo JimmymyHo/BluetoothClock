@@ -7,8 +7,15 @@
 //
 
 #import "TabBarViewController.h"
+#import "AppDelegate.h"
+#import <snfsdk/snfsdk.h>
+#import "SecondViewController.h"
+#include <objc/message.h>
 
-@interface TabBarViewController ()
+@interface TabBarViewController (){
+    AppDelegate *appDelegate;
+    SecondViewController *secondVC;
+}
 
 @end
 
@@ -27,7 +34,34 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    appDelegate.tabVC = self;
+    secondVC = (SecondViewController*)self.viewControllers[1];
+    
 }
+
+- (NSArray *) deviceList
+{
+    return appDelegate.leMgr.devList;
+}
+
+- (void) refreshDeviceList
+{
+    
+}
+
+- (void)connectOperation{
+    LeDevice *dev = [[self deviceList] objectAtIndex:0];
+    if (dev.shouldBeConnected){
+        NSLog(@"already connected");
+    }
+	else
+	{
+        NSLog(@"connecting . . .");
+        [dev connect];
+   	}
+}
+
 
 - (void)didReceiveMemoryWarning
 {

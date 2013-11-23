@@ -36,8 +36,8 @@
         [self.minuteArray addObject:[NSString stringWithFormat:@"%d",i]];
     }
     
-    [self.pickerView selectRow:(100000-4) inComponent:1 animated:NO];
-    [self.pickerView selectRow:(100000-40)inComponent:2 animated:NO];
+    [self.pickerView selectRow:(1000-4) inComponent:1 animated:NO];
+    [self.pickerView selectRow:(1000-40)inComponent:2 animated:NO];
      
 }
 
@@ -71,7 +71,7 @@
     if (component == 0) {
         return [self.noonArray count];
     }else {
-        return 200000;
+        return 2000;
     }
 }
 

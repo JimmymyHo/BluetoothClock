@@ -24,6 +24,7 @@
 		3282131A183E0C8C009FF634 /* AddClockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32821315183E0C8C009FF634 /* AddClockViewController.m */; };
 		3282131B183E0C8C009FF634 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32821317183E0C8C009FF634 /* SecondViewController.m */; };
 		3282131D183E0C95009FF634 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3282131C183E0C95009FF634 /* Main.storyboard */; };
+		3299CC131840B849008E6751 /* snfsdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3299CC121840B849008E6751 /* snfsdk.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		32821316183E0C8C009FF634 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		32821317183E0C8C009FF634 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		3282131C183E0C95009FF634 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		3299CC121840B849008E6751 /* snfsdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = snfsdk.framework; path = ../../Documents/IPhone/snfsdk_106/snfsdk.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3299CC131840B849008E6751 /* snfsdk.framework in Frameworks */,
 				328212DE183E0C7A009FF634 /* CoreGraphics.framework in Frameworks */,
 				328212E0183E0C7A009FF634 /* UIKit.framework in Frameworks */,
 				328212DC183E0C7A009FF634 /* Foundation.framework in Frameworks */,
@@ -110,6 +113,7 @@
 		328212DA183E0C79009FF634 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3299CC121840B849008E6751 /* snfsdk.framework */,
 				328212DB183E0C79009FF634 /* Foundation.framework */,
 				328212DD183E0C7A009FF634 /* CoreGraphics.framework */,
 				328212DF183E0C7A009FF634 /* UIKit.framework */,
@@ -388,6 +392,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/jimmyho/Documents/IPhone/snfsdk_106,
+					"/Users/jimmyho/Documents/IPhone/snfsdk\\ 0.6b/snfsdkDemo\\ code",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BluetoothClock/BluetoothClock-Prefix.pch";
 				INFOPLIST_FILE = "BluetoothClock/BluetoothClock-Info.plist";
@@ -401,6 +410,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/jimmyho/Documents/IPhone/snfsdk_106,
+					"/Users/jimmyho/Documents/IPhone/snfsdk\\ 0.6b/snfsdkDemo\\ code",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BluetoothClock/BluetoothClock-Prefix.pch";
 				INFOPLIST_FILE = "BluetoothClock/BluetoothClock-Info.plist";
@@ -470,6 +484,7 @@
 				3282130C183E0C7A009FF634 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3282130D183E0C7A009FF634 /* Build configuration list for PBXNativeTarget "BluetoothClockTests" */ = {
 			isa = XCConfigurationList;
@@ -478,6 +493,7 @@
 				3282130F183E0C7A009FF634 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

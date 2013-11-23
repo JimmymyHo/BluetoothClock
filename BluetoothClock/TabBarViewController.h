@@ -10,4 +10,8 @@
 
 @interface TabBarViewController : UITabBarController
 
+
+- (void) refreshDeviceList;
+- (void) connectOperation;
+
 @end
