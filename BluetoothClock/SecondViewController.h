@@ -13,4 +13,6 @@
 @property (nonatomic, strong) IBOutlet UILabel *connectLabel;
 @property (nonatomic, strong) IBOutlet UILabel *distantLabel;
 
+@property (nonatomic, strong) IBOutlet UIImageView *imageView;
+
 @end

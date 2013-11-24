@@ -41,8 +41,6 @@
     appDelegate.tabVC = self;
     firstVC = self.viewControllers[0];
     secondVC = self.viewControllers[1];
-    self.tabBar.translucent = YES;
-    self.tabBar.backgroundColor = [UIColor clearColor];
 
 }
 
