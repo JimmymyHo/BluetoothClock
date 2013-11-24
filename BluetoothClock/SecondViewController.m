@@ -27,6 +27,11 @@
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSTimer* myTimer = [NSTimer scheduledTimerWithTimeInterval: 0.5 target: self
                                                       selector: @selector(refreshDistance) userInfo: nil repeats: YES];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                                                  forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.view.backgroundColor = [UIColor clearColor];
 }
 
 - (NSArray *) deviceList
@@ -36,7 +41,10 @@
 
 - (void) refreshDistance
 {
-    LeDevice *dev = [self.deviceList objectAtIndex:0];
+    if ([self deviceList].count == 0)
+        return;
+    
+    LeDevice *dev = [[self deviceList] objectAtIndex:0];
     
     //update distant
     if ([dev isKindOfClass:[LeSnfDevice class]])

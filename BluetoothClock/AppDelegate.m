@@ -49,6 +49,7 @@ const uint8_t key0[16] = {0xF0,0xE1,0xD2,0xC3,0xB4,0xA5,0x96,0x87,0x78,0x69,0x5A
     /* Create a LeDeviceManager object that will handle a list of LeDevices */
     self.leMgr = [[LeDeviceManager alloc] initWithSupportedDevices: [NSArray arrayWithObjects:
                                                                      [LeSnfDevice class], nil] delegate:self];
+    
     return YES;
 }
 

@@ -10,11 +10,13 @@
 #import "AppDelegate.h"
 #import <snfsdk/snfsdk.h>
 #import "SecondViewController.h"
+#import "FirstViewController.h"
 #include <objc/message.h>
 
 @interface TabBarViewController (){
     AppDelegate *appDelegate;
     SecondViewController *secondVC;
+    FirstViewController *firstVC;
 }
 
 @end
@@ -34,20 +36,19 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     appDelegate.tabVC = self;
-    secondVC = (SecondViewController*)self.viewControllers[1];
-    
+    firstVC = self.viewControllers[0];
+    secondVC = self.viewControllers[1];
+    self.tabBar.translucent = YES;
+    self.tabBar.backgroundColor = [UIColor clearColor];
+
 }
 
 - (NSArray *) deviceList
 {
     return appDelegate.leMgr.devList;
-}
-
-- (void) refreshDeviceList
-{
-    
 }
 
 - (void)connectOperation{
@@ -57,7 +58,7 @@
     }
 	else
 	{
-        NSLog(@"connecting . . .");
+        NSLog(@"connecting...");
         [dev connect];
    	}
 }
