@@ -1,0 +1,545 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		32095F3C184348C300EA751C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32095F3B184348C300EA751C /* Foundation.framework */; };
+		32095F3E184348C300EA751C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32095F3D184348C300EA751C /* CoreGraphics.framework */; };
+		32095F40184348C300EA751C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32095F3F184348C300EA751C /* UIKit.framework */; };
+		32095F46184348C300EA751C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32095F44184348C300EA751C /* InfoPlist.strings */; };
+		32095F48184348C300EA751C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 32095F47184348C300EA751C /* main.m */; };
+		32095F54184348C300EA751C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32095F53184348C300EA751C /* Images.xcassets */; };
+		32095F5B184348C400EA751C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32095F5A184348C400EA751C /* XCTest.framework */; };
+		32095F5C184348C400EA751C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32095F3B184348C300EA751C /* Foundation.framework */; };
+		32095F5D184348C400EA751C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32095F3F184348C300EA751C /* UIKit.framework */; };
+		32095F65184348C400EA751C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32095F63184348C400EA751C /* InfoPlist.strings */; };
+		32095F67184348C400EA751C /* SmartClockTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32095F66184348C400EA751C /* SmartClockTests.m */; };
+		32095F71184348E200EA751C /* snfsdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32095F70184348E200EA751C /* snfsdk.framework */; };
+		32095F7D1843491000EA751C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 32095F731843491000EA751C /* AppDelegate.m */; };
+		32095F7E1843491000EA751C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32095F741843491000EA751C /* Main.storyboard */; };
+		32095F7F1843491000EA751C /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32095F761843491000EA751C /* TabBarViewController.m */; };
+		32095F801843491000EA751C /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32095F781843491000EA751C /* FirstViewController.m */; };
+		32095F811843491000EA751C /* AddClockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32095F7A1843491000EA751C /* AddClockViewController.m */; };
+		32095F821843491000EA751C /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32095F7C1843491000EA751C /* SecondViewController.m */; };
+		32095F8F1843492F00EA751C /* Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32095F831843492F00EA751C /* Background@2x.png */; };
+		32095F901843492F00EA751C /* Signal-01@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32095F841843492F00EA751C /* Signal-01@2x.png */; };
+		32095F911843492F00EA751C /* Signal-02@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32095F851843492F00EA751C /* Signal-02@2x.png */; };
+		32095F921843492F00EA751C /* Signal-03@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32095F861843492F00EA751C /* Signal-03@2x.png */; };
+		32095F931843492F00EA751C /* Signal-04@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32095F871843492F00EA751C /* Signal-04@2x.png */; };
+		32095F941843492F00EA751C /* Tab Bar Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32095F881843492F00EA751C /* Tab Bar Background@2x.png */; };
+		32095F951843492F00EA751C /* Tab Bar Icon-01@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32095F891843492F00EA751C /* Tab Bar Icon-01@2x.png */; };
+		32095F961843492F00EA751C /* Tab Bar Icon-02@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32095F8A1843492F00EA751C /* Tab Bar Icon-02@2x.png */; };
+		32095F971843492F00EA751C /* Tab Bar Icon-03@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32095F8B1843492F00EA751C /* Tab Bar Icon-03@2x.png */; };
+		32095F981843492F00EA751C /* Tab Bar Icon-04@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32095F8C1843492F00EA751C /* Tab Bar Icon-04@2x.png */; };
+		32095F991843492F00EA751C /* Tab Bar Icon-05@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32095F8D1843492F00EA751C /* Tab Bar Icon-05@2x.png */; };
+		32095F9A1843492F00EA751C /* Tab Bar Icon-06@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32095F8E1843492F00EA751C /* Tab Bar Icon-06@2x.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		32095F5E184348C400EA751C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32095F30184348C300EA751C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 32095F37184348C300EA751C;
+			remoteInfo = SmartClock;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		32095F38184348C300EA751C /* SmartClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		32095F3B184348C300EA751C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		32095F3D184348C300EA751C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		32095F3F184348C300EA751C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		32095F43184348C300EA751C /* SmartClock-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SmartClock-Info.plist"; sourceTree = "<group>"; };
+		32095F45184348C300EA751C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		32095F47184348C300EA751C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		32095F49184348C300EA751C /* SmartClock-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SmartClock-Prefix.pch"; sourceTree = "<group>"; };
+		32095F53184348C300EA751C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		32095F59184348C400EA751C /* SmartClockTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartClockTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		32095F5A184348C400EA751C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		32095F62184348C400EA751C /* SmartClockTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SmartClockTests-Info.plist"; sourceTree = "<group>"; };
+		32095F64184348C400EA751C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		32095F66184348C400EA751C /* SmartClockTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmartClockTests.m; sourceTree = "<group>"; };
+		32095F70184348E200EA751C /* snfsdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = snfsdk.framework; sourceTree = "<group>"; };
+		32095F721843491000EA751C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		32095F731843491000EA751C /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		32095F741843491000EA751C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		32095F751843491000EA751C /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
+		32095F761843491000EA751C /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
+		32095F771843491000EA751C /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		32095F781843491000EA751C /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		32095F791843491000EA751C /* AddClockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddClockViewController.h; sourceTree = "<group>"; };
+		32095F7A1843491000EA751C /* AddClockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddClockViewController.m; sourceTree = "<group>"; };
+		32095F7B1843491000EA751C /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		32095F7C1843491000EA751C /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		32095F831843492F00EA751C /* Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Background@2x.png"; sourceTree = "<group>"; };
+		32095F841843492F00EA751C /* Signal-01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Signal-01@2x.png"; sourceTree = "<group>"; };
+		32095F851843492F00EA751C /* Signal-02@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Signal-02@2x.png"; sourceTree = "<group>"; };
+		32095F861843492F00EA751C /* Signal-03@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Signal-03@2x.png"; sourceTree = "<group>"; };
+		32095F871843492F00EA751C /* Signal-04@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Signal-04@2x.png"; sourceTree = "<group>"; };
+		32095F881843492F00EA751C /* Tab Bar Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tab Bar Background@2x.png"; sourceTree = "<group>"; };
+		32095F891843492F00EA751C /* Tab Bar Icon-01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tab Bar Icon-01@2x.png"; sourceTree = "<group>"; };
+		32095F8A1843492F00EA751C /* Tab Bar Icon-02@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tab Bar Icon-02@2x.png"; sourceTree = "<group>"; };
+		32095F8B1843492F00EA751C /* Tab Bar Icon-03@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tab Bar Icon-03@2x.png"; sourceTree = "<group>"; };
+		32095F8C1843492F00EA751C /* Tab Bar Icon-04@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tab Bar Icon-04@2x.png"; sourceTree = "<group>"; };
+		32095F8D1843492F00EA751C /* Tab Bar Icon-05@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tab Bar Icon-05@2x.png"; sourceTree = "<group>"; };
+		32095F8E1843492F00EA751C /* Tab Bar Icon-06@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tab Bar Icon-06@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		32095F35184348C300EA751C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32095F3E184348C300EA751C /* CoreGraphics.framework in Frameworks */,
+				32095F71184348E200EA751C /* snfsdk.framework in Frameworks */,
+				32095F40184348C300EA751C /* UIKit.framework in Frameworks */,
+				32095F3C184348C300EA751C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		32095F56184348C400EA751C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32095F5B184348C400EA751C /* XCTest.framework in Frameworks */,
+				32095F5D184348C400EA751C /* UIKit.framework in Frameworks */,
+				32095F5C184348C400EA751C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		32095F2F184348C300EA751C = {
+			isa = PBXGroup;
+			children = (
+				32095F41184348C300EA751C /* SmartClock */,
+				32095F60184348C400EA751C /* SmartClockTests */,
+				32095F3A184348C300EA751C /* Frameworks */,
+				32095F39184348C300EA751C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		32095F39184348C300EA751C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				32095F38184348C300EA751C /* SmartClock.app */,
+				32095F59184348C400EA751C /* SmartClockTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		32095F3A184348C300EA751C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				32095F70184348E200EA751C /* snfsdk.framework */,
+				32095F3B184348C300EA751C /* Foundation.framework */,
+				32095F3D184348C300EA751C /* CoreGraphics.framework */,
+				32095F3F184348C300EA751C /* UIKit.framework */,
+				32095F5A184348C400EA751C /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		32095F41184348C300EA751C /* SmartClock */ = {
+			isa = PBXGroup;
+			children = (
+				32095F721843491000EA751C /* AppDelegate.h */,
+				32095F731843491000EA751C /* AppDelegate.m */,
+				32095F741843491000EA751C /* Main.storyboard */,
+				32095F751843491000EA751C /* TabBarViewController.h */,
+				32095F761843491000EA751C /* TabBarViewController.m */,
+				32095F771843491000EA751C /* FirstViewController.h */,
+				32095F781843491000EA751C /* FirstViewController.m */,
+				32095F791843491000EA751C /* AddClockViewController.h */,
+				32095F7A1843491000EA751C /* AddClockViewController.m */,
+				32095F7B1843491000EA751C /* SecondViewController.h */,
+				32095F7C1843491000EA751C /* SecondViewController.m */,
+				32095F53184348C300EA751C /* Images.xcassets */,
+				32095F42184348C300EA751C /* Supporting Files */,
+			);
+			path = SmartClock;
+			sourceTree = "<group>";
+		};
+		32095F42184348C300EA751C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				32095F831843492F00EA751C /* Background@2x.png */,
+				32095F841843492F00EA751C /* Signal-01@2x.png */,
+				32095F851843492F00EA751C /* Signal-02@2x.png */,
+				32095F861843492F00EA751C /* Signal-03@2x.png */,
+				32095F871843492F00EA751C /* Signal-04@2x.png */,
+				32095F881843492F00EA751C /* Tab Bar Background@2x.png */,
+				32095F891843492F00EA751C /* Tab Bar Icon-01@2x.png */,
+				32095F8A1843492F00EA751C /* Tab Bar Icon-02@2x.png */,
+				32095F8B1843492F00EA751C /* Tab Bar Icon-03@2x.png */,
+				32095F8C1843492F00EA751C /* Tab Bar Icon-04@2x.png */,
+				32095F8D1843492F00EA751C /* Tab Bar Icon-05@2x.png */,
+				32095F8E1843492F00EA751C /* Tab Bar Icon-06@2x.png */,
+				32095F43184348C300EA751C /* SmartClock-Info.plist */,
+				32095F44184348C300EA751C /* InfoPlist.strings */,
+				32095F47184348C300EA751C /* main.m */,
+				32095F49184348C300EA751C /* SmartClock-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		32095F60184348C400EA751C /* SmartClockTests */ = {
+			isa = PBXGroup;
+			children = (
+				32095F66184348C400EA751C /* SmartClockTests.m */,
+				32095F61184348C400EA751C /* Supporting Files */,
+			);
+			path = SmartClockTests;
+			sourceTree = "<group>";
+		};
+		32095F61184348C400EA751C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				32095F62184348C400EA751C /* SmartClockTests-Info.plist */,
+				32095F63184348C400EA751C /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		32095F37184348C300EA751C /* SmartClock */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 32095F6A184348C400EA751C /* Build configuration list for PBXNativeTarget "SmartClock" */;
+			buildPhases = (
+				32095F34184348C300EA751C /* Sources */,
+				32095F35184348C300EA751C /* Frameworks */,
+				32095F36184348C300EA751C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SmartClock;
+			productName = SmartClock;
+			productReference = 32095F38184348C300EA751C /* SmartClock.app */;
+			productType = "com.apple.product-type.application";
+		};
+		32095F58184348C400EA751C /* SmartClockTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 32095F6D184348C400EA751C /* Build configuration list for PBXNativeTarget "SmartClockTests" */;
+			buildPhases = (
+				32095F55184348C400EA751C /* Sources */,
+				32095F56184348C400EA751C /* Frameworks */,
+				32095F57184348C400EA751C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				32095F5F184348C400EA751C /* PBXTargetDependency */,
+			);
+			name = SmartClockTests;
+			productName = SmartClockTests;
+			productReference = 32095F59184348C400EA751C /* SmartClockTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		32095F30184348C300EA751C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = JimmyHo;
+				TargetAttributes = {
+					32095F58184348C400EA751C = {
+						TestTargetID = 32095F37184348C300EA751C;
+					};
+				};
+			};
+			buildConfigurationList = 32095F33184348C300EA751C /* Build configuration list for PBXProject "SmartClock" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 32095F2F184348C300EA751C;
+			productRefGroup = 32095F39184348C300EA751C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				32095F37184348C300EA751C /* SmartClock */,
+				32095F58184348C400EA751C /* SmartClockTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		32095F36184348C300EA751C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32095F911843492F00EA751C /* Signal-02@2x.png in Resources */,
+				32095F7E1843491000EA751C /* Main.storyboard in Resources */,
+				32095F991843492F00EA751C /* Tab Bar Icon-05@2x.png in Resources */,
+				32095F981843492F00EA751C /* Tab Bar Icon-04@2x.png in Resources */,
+				32095F54184348C300EA751C /* Images.xcassets in Resources */,
+				32095F9A1843492F00EA751C /* Tab Bar Icon-06@2x.png in Resources */,
+				32095F941843492F00EA751C /* Tab Bar Background@2x.png in Resources */,
+				32095F971843492F00EA751C /* Tab Bar Icon-03@2x.png in Resources */,
+				32095F8F1843492F00EA751C /* Background@2x.png in Resources */,
+				32095F931843492F00EA751C /* Signal-04@2x.png in Resources */,
+				32095F46184348C300EA751C /* InfoPlist.strings in Resources */,
+				32095F921843492F00EA751C /* Signal-03@2x.png in Resources */,
+				32095F951843492F00EA751C /* Tab Bar Icon-01@2x.png in Resources */,
+				32095F901843492F00EA751C /* Signal-01@2x.png in Resources */,
+				32095F961843492F00EA751C /* Tab Bar Icon-02@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		32095F57184348C400EA751C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32095F65184348C400EA751C /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		32095F34184348C300EA751C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32095F821843491000EA751C /* SecondViewController.m in Sources */,
+				32095F811843491000EA751C /* AddClockViewController.m in Sources */,
+				32095F7D1843491000EA751C /* AppDelegate.m in Sources */,
+				32095F7F1843491000EA751C /* TabBarViewController.m in Sources */,
+				32095F48184348C300EA751C /* main.m in Sources */,
+				32095F801843491000EA751C /* FirstViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		32095F55184348C400EA751C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32095F67184348C400EA751C /* SmartClockTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		32095F5F184348C400EA751C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 32095F37184348C300EA751C /* SmartClock */;
+			targetProxy = 32095F5E184348C400EA751C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		32095F44184348C300EA751C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				32095F45184348C300EA751C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		32095F63184348C400EA751C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				32095F64184348C400EA751C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		32095F68184348C400EA751C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		32095F69184348C400EA751C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		32095F6B184348C400EA751C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/jimmyho/Documents/SmartClock,
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SmartClock/SmartClock-Prefix.pch";
+				INFOPLIST_FILE = "SmartClock/SmartClock-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		32095F6C184348C400EA751C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/jimmyho/Documents/SmartClock,
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SmartClock/SmartClock-Prefix.pch";
+				INFOPLIST_FILE = "SmartClock/SmartClock-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		32095F6E184348C400EA751C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SmartClock.app/SmartClock";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SmartClock/SmartClock-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "SmartClockTests/SmartClockTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		32095F6F184348C400EA751C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SmartClock.app/SmartClock";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SmartClock/SmartClock-Prefix.pch";
+				INFOPLIST_FILE = "SmartClockTests/SmartClockTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		32095F33184348C300EA751C /* Build configuration list for PBXProject "SmartClock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32095F68184348C400EA751C /* Debug */,
+				32095F69184348C400EA751C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		32095F6A184348C400EA751C /* Build configuration list for PBXNativeTarget "SmartClock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32095F6B184348C400EA751C /* Debug */,
+				32095F6C184348C400EA751C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		32095F6D184348C400EA751C /* Build configuration list for PBXNativeTarget "SmartClockTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32095F6E184348C400EA751C /* Debug */,
+				32095F6F184348C400EA751C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 32095F30184348C300EA751C /* Project object */;
+}

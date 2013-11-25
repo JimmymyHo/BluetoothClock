@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>BluetoothClock.xcscheme</key>
+		<key>SmartClock.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,12 +12,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>328212D7183E0C79009FF634</key>
+		<key>32095F37184348C300EA751C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>328212F8183E0C7A009FF634</key>
+		<key>32095F58184348C400EA751C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

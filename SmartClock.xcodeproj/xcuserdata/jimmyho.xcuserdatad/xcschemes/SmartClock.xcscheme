@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "328212D7183E0C79009FF634"
-               BuildableName = "BluetoothClock.app"
-               BlueprintName = "BluetoothClock"
-               ReferencedContainer = "container:BluetoothClock.xcodeproj">
+               BlueprintIdentifier = "32095F37184348C300EA751C"
+               BuildableName = "SmartClock.app"
+               BlueprintName = "SmartClock"
+               ReferencedContainer = "container:SmartClock.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,20 +32,20 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "328212F8183E0C7A009FF634"
-               BuildableName = "BluetoothClockTests.xctest"
-               BlueprintName = "BluetoothClockTests"
-               ReferencedContainer = "container:BluetoothClock.xcodeproj">
+               BlueprintIdentifier = "32095F58184348C400EA751C"
+               BuildableName = "SmartClockTests.xctest"
+               BlueprintName = "SmartClockTests"
+               ReferencedContainer = "container:SmartClock.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "328212D7183E0C79009FF634"
-            BuildableName = "BluetoothClock.app"
-            BlueprintName = "BluetoothClock"
-            ReferencedContainer = "container:BluetoothClock.xcodeproj">
+            BlueprintIdentifier = "32095F37184348C300EA751C"
+            BuildableName = "SmartClock.app"
+            BlueprintName = "SmartClock"
+            ReferencedContainer = "container:SmartClock.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -61,10 +61,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "328212D7183E0C79009FF634"
-            BuildableName = "BluetoothClock.app"
-            BlueprintName = "BluetoothClock"
-            ReferencedContainer = "container:BluetoothClock.xcodeproj">
+            BlueprintIdentifier = "32095F37184348C300EA751C"
+            BuildableName = "SmartClock.app"
+            BlueprintName = "SmartClock"
+            ReferencedContainer = "container:SmartClock.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -79,10 +79,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "328212D7183E0C79009FF634"
-            BuildableName = "BluetoothClock.app"
-            BlueprintName = "BluetoothClock"
-            ReferencedContainer = "container:BluetoothClock.xcodeproj">
+            BlueprintIdentifier = "32095F37184348C300EA751C"
+            BuildableName = "SmartClock.app"
+            BlueprintName = "SmartClock"
+            ReferencedContainer = "container:SmartClock.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

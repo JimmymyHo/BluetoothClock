@@ -1,18 +1,18 @@
 //
-//  BluetoothClockTests.m
-//  BluetoothClockTests
+//  SmartClockTests.m
+//  SmartClockTests
 //
-//  Created by JimmyHo on 2013/11/21.
+//  Created by JimmyHo on 2013/11/25.
 //  Copyright (c) 2013年 JimmyHo. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
 
-@interface BluetoothClockTests : XCTestCase
+@interface SmartClockTests : XCTestCase
 
 @end
 
-@implementation BluetoothClockTests
+@implementation SmartClockTests
 
 - (void)setUp
 {

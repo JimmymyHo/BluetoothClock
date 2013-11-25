@@ -1,8 +1,8 @@
 //
 //  main.m
-//  BluetoothClock
+//  SmartClock
 //
-//  Created by JimmyHo on 2013/11/21.
+//  Created by JimmyHo on 2013/11/25.
 //  Copyright (c) 2013年 JimmyHo. All rights reserved.
 //
 

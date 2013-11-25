@@ -12,8 +12,6 @@
 
 @implementation AppDelegate
 @synthesize leMgr;
-@synthesize tabVC;
-
 
 
 #define BROADCAST_ID_PACKET0    0xF0    /* constants to identify custom broadcasts */
@@ -140,7 +138,7 @@ const uint8_t key0[16] = {0xF0,0xE1,0xD2,0xC3,0xB4,0xA5,0x96,0x87,0x78,0x69,0x5A
 - (void) didDiscoverLeSnfDevice:(LeSnfDevice *)dev
 {
     // [tabVC refreshDeviceList];
-    [tabVC connectOperation];
+    [self.tabVC connectOperation];
 }
 
 

@@ -169,7 +169,7 @@
 
 @end
 
-enum LE_SNF_STATE
+enum LE_DEVICE_STATE
 {
     LE_DEVICE_STATE_DISCONNECTED=0,
     LE_DEVICE_STATE_CONNECTING,
@@ -180,7 +180,7 @@ enum LE_SNF_STATE
 @interface LeSnfDevice : LeDevice
 
 @property (readonly)            BOOL                            distanceMeasurementEnabled; /* status of distance measurement enable */
-@property (nonatomic,readonly)  enum LE_SNF_STATE               state;                      /* status of connection to device */
+@property (nonatomic,readonly)  enum LE_DEVICE_STATE            state;                      /* status of connection to device */
 @property (nonatomic,strong)    id <LeSnfDeviceDelegate>        delegate;                   /* the delegate */
 @property (nonatomic,readonly)  uint32_t                        swRevision;                 /* software revision on the device side */
 
@@ -348,6 +348,49 @@ enum LE_SNF_STATE
 @end
 
 
+@class LeBlutrackerDevice;
+@protocol LeBlutrackerDeviceDelegate
+
+/*
+ called when a broadcast from the device is received that contains data set by the user.
+ */
+- (void)        leBlutrackerDevice:(LeBlutrackerDevice *)dev didUpdateBroadcastData: (NSData *) data;
+
+/*
+ called when a broadcast from the device is received.
+ */
+- (void)        didDiscoverLeBlutrackerDevice: (LeBlutrackerDevice *) dev;
+
+/*
+ called to request firmware update data.
+ if a valid firmware image is given and the version is newer than the one on the device,
+ an update will happen on the next connection.
+ */
+- (NSData *)    firmwareDataForLeBlutrackerDevice: (LeBlutrackerDevice *) dev;
+
+/*
+ called when the connection state of a device changes.
+ */
+- (void)        leBlutrackerDevice: (LeBlutrackerDevice *) dev didChangeState: (int) state;
+
+/*
+ called to request the broadcast encryption key for the given device.
+ It is used to decrypt the loacation broadcast.
+ */
+- (NSData *)    broadcastKeyForLeBlutrackerDevice:(LeBlutrackerDevice *)dev;
+
+/*
+ called when key was written to device
+ */
+- (void)    didWriteBroadcastKeyForLeBlutrackerDevice:(LeBlutrackerDevice *)dev;
+
+
+@end
+
+
+
+
+
 @interface LeBlutrackerDevice : LeDevice  <MKAnnotation>
 {
     CLLocationCoordinate2D _coord;
@@ -356,6 +399,16 @@ enum LE_SNF_STATE
 @property (nonatomic,readonly,copy)	NSString *title;
 @property (nonatomic,readonly,copy)	NSString *subtitle;
 @property (nonatomic,readonly)	CLLocationCoordinate2D coordinate;
+
+@property (nonatomic, strong)       NSString *svInfo;
+@property (nonatomic, strong)       NSString *navInfo;
+
+@property (nonatomic,readonly)  enum LE_DEVICE_STATE                state;                      /* status of connection to device */
+@property (nonatomic,strong)    id <LeBlutrackerDeviceDelegate>     delegate;                   /* the delegate */
+
+@property (readonly)            BOOL                                bcKeyEnabled;               /* broadcast key enabled */
+
+- (BOOL) writeBroadcastKey: (NSData *) key;
 
 @end
 
