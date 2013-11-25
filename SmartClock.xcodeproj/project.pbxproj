@@ -18,7 +18,6 @@
 		32095F5D184348C400EA751C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32095F3F184348C300EA751C /* UIKit.framework */; };
 		32095F65184348C400EA751C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32095F63184348C400EA751C /* InfoPlist.strings */; };
 		32095F67184348C400EA751C /* SmartClockTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32095F66184348C400EA751C /* SmartClockTests.m */; };
-		32095F71184348E200EA751C /* snfsdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32095F70184348E200EA751C /* snfsdk.framework */; };
 		32095F7D1843491000EA751C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 32095F731843491000EA751C /* AppDelegate.m */; };
 		32095F7E1843491000EA751C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32095F741843491000EA751C /* Main.storyboard */; };
 		32095F7F1843491000EA751C /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32095F761843491000EA751C /* TabBarViewController.m */; };
@@ -37,6 +36,7 @@
 		32095F981843492F00EA751C /* Tab Bar Icon-04@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32095F8C1843492F00EA751C /* Tab Bar Icon-04@2x.png */; };
 		32095F991843492F00EA751C /* Tab Bar Icon-05@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32095F8D1843492F00EA751C /* Tab Bar Icon-05@2x.png */; };
 		32095F9A1843492F00EA751C /* Tab Bar Icon-06@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32095F8E1843492F00EA751C /* Tab Bar Icon-06@2x.png */; };
+		32095F9C18434CC500EA751C /* snfsdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32095F9B18434CC500EA751C /* snfsdk.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +64,6 @@
 		32095F62184348C400EA751C /* SmartClockTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SmartClockTests-Info.plist"; sourceTree = "<group>"; };
 		32095F64184348C400EA751C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		32095F66184348C400EA751C /* SmartClockTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmartClockTests.m; sourceTree = "<group>"; };
-		32095F70184348E200EA751C /* snfsdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = snfsdk.framework; sourceTree = "<group>"; };
 		32095F721843491000EA751C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		32095F731843491000EA751C /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		32095F741843491000EA751C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -88,6 +87,7 @@
 		32095F8C1843492F00EA751C /* Tab Bar Icon-04@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tab Bar Icon-04@2x.png"; sourceTree = "<group>"; };
 		32095F8D1843492F00EA751C /* Tab Bar Icon-05@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tab Bar Icon-05@2x.png"; sourceTree = "<group>"; };
 		32095F8E1843492F00EA751C /* Tab Bar Icon-06@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tab Bar Icon-06@2x.png"; sourceTree = "<group>"; };
+		32095F9B18434CC500EA751C /* snfsdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = snfsdk.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,8 +95,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32095F9C18434CC500EA751C /* snfsdk.framework in Frameworks */,
 				32095F3E184348C300EA751C /* CoreGraphics.framework in Frameworks */,
-				32095F71184348E200EA751C /* snfsdk.framework in Frameworks */,
 				32095F40184348C300EA751C /* UIKit.framework in Frameworks */,
 				32095F3C184348C300EA751C /* Foundation.framework in Frameworks */,
 			);
@@ -137,7 +137,7 @@
 		32095F3A184348C300EA751C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				32095F70184348E200EA751C /* snfsdk.framework */,
+				32095F9B18434CC500EA751C /* snfsdk.framework */,
 				32095F3B184348C300EA751C /* Foundation.framework */,
 				32095F3D184348C300EA751C /* CoreGraphics.framework */,
 				32095F3F184348C300EA751C /* UIKit.framework */,
@@ -443,6 +443,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/jimmyho/Documents/SmartClock,
+					/Users/jimmyho/Desktop/BluetoothClock,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SmartClock/SmartClock-Prefix.pch";
@@ -460,6 +461,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/jimmyho/Documents/SmartClock,
+					/Users/jimmyho/Desktop/BluetoothClock,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SmartClock/SmartClock-Prefix.pch";
@@ -530,6 +532,7 @@
 				32095F6C184348C400EA751C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		32095F6D184348C400EA751C /* Build configuration list for PBXNativeTarget "SmartClockTests" */ = {
 			isa = XCConfigurationList;
@@ -538,6 +541,7 @@
 				32095F6F184348C400EA751C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

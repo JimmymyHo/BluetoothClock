@@ -63,6 +63,8 @@ const uint8_t key0[16] = {0xF0,0xE1,0xD2,0xC3,0xB4,0xA5,0x96,0x87,0x78,0x69,0x5A
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     
+    if (self.leMgr.devList.count==0)
+        return;
     LeDevice *dev = [self.leMgr.devList objectAtIndex:0];
     if (dev.shouldBeConnected){
         NSLog(@"disconnect");
