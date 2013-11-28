@@ -36,7 +36,7 @@
 		32095F981843492F00EA751C /* Tab Bar Icon-04@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32095F8C1843492F00EA751C /* Tab Bar Icon-04@2x.png */; };
 		32095F991843492F00EA751C /* Tab Bar Icon-05@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32095F8D1843492F00EA751C /* Tab Bar Icon-05@2x.png */; };
 		32095F9A1843492F00EA751C /* Tab Bar Icon-06@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32095F8E1843492F00EA751C /* Tab Bar Icon-06@2x.png */; };
-		32095F9C18434CC500EA751C /* snfsdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32095F9B18434CC500EA751C /* snfsdk.framework */; };
+		4ABF42C11847BECE006C59E5 /* snfsdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32095F9B18434CC500EA751C /* snfsdk.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,7 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32095F9C18434CC500EA751C /* snfsdk.framework in Frameworks */,
+				4ABF42C11847BECE006C59E5 /* snfsdk.framework in Frameworks */,
 				32095F3E184348C300EA751C /* CoreGraphics.framework in Frameworks */,
 				32095F40184348C300EA751C /* UIKit.framework in Frameworks */,
 				32095F3C184348C300EA751C /* Foundation.framework in Frameworks */,
@@ -444,6 +444,7 @@
 					"$(inherited)",
 					/Users/jimmyho/Documents/SmartClock,
 					/Users/jimmyho/Desktop/BluetoothClock,
+					/Users/andikan/Dev/objc/BluetoothClock,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SmartClock/SmartClock-Prefix.pch";
@@ -462,6 +463,7 @@
 					"$(inherited)",
 					/Users/jimmyho/Documents/SmartClock,
 					/Users/jimmyho/Desktop/BluetoothClock,
+					/Users/andikan/Dev/objc/BluetoothClock,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SmartClock/SmartClock-Prefix.pch";

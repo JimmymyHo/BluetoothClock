@@ -29,9 +29,18 @@
     self.navigationController.navigationBar.translucent = YES;
     self.navigationController.view.backgroundColor = [UIColor clearColor];
     
+    
+    // table view custom
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.png"]];
     [self.tableView setBackgroundView:imageView];
-
+    
+    self.tableView.separatorColor = [UIColor whiteColor];
+    
+    // localnotification
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reloadTable)
+                                                 name:@"reloadData"
+                                               object:nil];
 }
 
 - (IBAction)insertNewClock:(id)sender
@@ -53,15 +62,27 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _objects.count;
+//    return _objects.count;
+    return [[[UIApplication sharedApplication] scheduledLocalNotifications] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    NSDate *object = _objects[indexPath.row];
-    cell.textLabel.text = [object description];
+    // Get list of local notifications
+    NSArray *localNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    UILocalNotification *localNotification = [localNotifications objectAtIndex:indexPath.row];
+    
+//    NSDate *object = _objects[indexPath.row];
+//    cell.textLabel.text = [object description];
+    UILabel *fireTimeLabel = (UILabel *)[cell viewWithTag:1001];
+    UILabel *noonLabel = (UILabel *)[cell viewWithTag:1002];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"HH:mm"];
+    fireTimeLabel.text = [formatter stringFromDate:localNotification.fireDate];
+    
     return cell;
 }
 
@@ -113,6 +134,12 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)reloadTable
+{
+    NSLog(@"reload Table");
+    [self.tableView reloadData];
 }
 
 @end

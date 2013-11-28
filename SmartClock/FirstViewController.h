@@ -10,4 +10,6 @@
 
 @interface FirstViewController : UITableViewController
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
+
+- (void)reloadTable;
 @end

@@ -33,7 +33,7 @@
     self.hourArray = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11",@"12"];
     self.minuteArray = [NSMutableArray arrayWithCapacity:60];
     for (int i=0; i<60; i++) {
-        [self.minuteArray addObject:[NSString stringWithFormat:@"%d",i]];
+        [self.minuteArray addObject:[NSString stringWithFormat:@"%02d",i]];
     }
     
     [self.pickerView selectRow:(1000-4) inComponent:1 animated:NO];
@@ -57,7 +57,40 @@
 }
 
 -(IBAction)saveButtonPressed:(id)sender {
+    NSInteger noonRow, hourRow, minuteRow;
+    noonRow = [self.pickerView selectedRowInComponent:0];
+    hourRow = [self.pickerView selectedRowInComponent:1];
+    minuteRow = [self.pickerView selectedRowInComponent:2];
+    NSLog(@"%@, %@:%@", self.noonArray[noonRow], self.hourArray[hourRow%12], self.minuteArray[minuteRow%60]);
     
+    // Covert to NSDate
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSTimeZone *tz = [NSTimeZone timeZoneWithName:@"Asia/Taipei"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [dateFormatter setTimeZone:tz];
+    
+    NSDate *pickDate = [dateFormatter dateFromString: [NSString stringWithFormat:@"2013-11-29 %@:%@:00", self.hourArray[hourRow%12], self.minuteArray[minuteRow%60]] ];
+    NSLog(@"%@", pickDate);
+    NSLog(@"%@", [pickDate descriptionWithLocale:[NSLocale systemLocale]]);
+    
+    
+    // Schedule the notification
+    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+    NSDate *now=[NSDate new];
+    localNotification.fireDate=[now dateByAddingTimeInterval:6];
+    NSLog(@"firedate : %@", localNotification.fireDate);
+//    localNotification.fireDate = pickerDate;
+    localNotification.alertBody = @"Smart alarm time up";
+//    localNotification.alertAction = @"Show me the item";
+    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+//
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    
+    // Request to reload table view data
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - UIPickerView DataSource
