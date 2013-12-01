@@ -13,5 +13,7 @@
 @property (nonatomic, strong) NSArray *noonArray;
 @property (nonatomic, strong) NSArray *hourArray;
 @property (nonatomic, strong) NSMutableArray *minuteArray;
+@property (nonatomic, weak) id delegate;
+
 
 @end

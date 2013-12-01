@@ -10,9 +10,6 @@
 
 @interface FirstViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) IBOutlet UIPickerView *pickerView;
+@property (nonatomic, strong) NSDictionary* addClockInfo;
 
-// keep track which indexPath points to the cell with UIDatePicker
-@property (nonatomic, strong) NSIndexPath *datePickerIndexPath;
-@property (assign) NSInteger pickerCellRowHeight;
 @end
