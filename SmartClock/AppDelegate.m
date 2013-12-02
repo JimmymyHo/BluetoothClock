@@ -347,6 +347,28 @@ const uint8_t key0[16] = {0xF0,0xE1,0xD2,0xC3,0xB4,0xA5,0x96,0x87,0x78,0x69,0x5A
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
+    NSLog(@"%@", notification.userInfo);
+    
+    // Get NSUserDefaults and update
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSArray *alarmArray = [userDefaults arrayForKey:@"AlarmArray"];
+    NSMutableArray *alarmMutableArray = [NSMutableArray arrayWithArray:alarmArray];
+    
+    for(NSUInteger i=0; i<[alarmMutableArray count]; i++){
+        NSDictionary *alarmDict = [alarmMutableArray objectAtIndex:i];
+        if([[alarmDict objectForKey:@"AlarmIndex"] isEqualToString:[notification.userInfo objectForKey:@"AlarmIndex"]]){
+            NSMutableDictionary *alarmMutableDict = [alarmDict mutableCopy];
+            [alarmMutableDict setObject:@"off" forKey:@"AlarmSwitch"];
+            alarmDict = [NSDictionary dictionaryWithDictionary:alarmMutableDict];
+            [alarmMutableArray replaceObjectAtIndex:i withObject:alarmDict];
+            alarmArray = [NSArray arrayWithArray:alarmMutableArray];
+            [userDefaults setObject:alarmArray forKey:@"AlarmArray"];
+            [userDefaults synchronize];
+        }
+    }
+    
+    NSLog(@"Update NSUserDefaults : %@", [userDefaults arrayForKey:@"AlarmArray"]);
+    
     UIApplicationState state = [application applicationState];
     if (state == UIApplicationStateActive) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Smart Alarm"
@@ -356,6 +378,7 @@ const uint8_t key0[16] = {0xF0,0xE1,0xD2,0xC3,0xB4,0xA5,0x96,0x87,0x78,0x69,0x5A
                                               otherButtonTitles:nil];
         [alert show];
     }
+    
     
     // Request to reload table view data
     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];

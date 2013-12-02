@@ -11,5 +11,6 @@
 @interface FirstViewController : UITableViewController
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 
+-(IBAction) chick_Switch:(id) sender;
 - (void)reloadTable;
 @end

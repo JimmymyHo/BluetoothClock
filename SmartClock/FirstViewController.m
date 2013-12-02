@@ -62,8 +62,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    return _objects.count;
-    return [[[UIApplication sharedApplication] scheduledLocalNotifications] count];
+    //return _objects.count;
+    //return [[[UIApplication sharedApplication] scheduledLocalNotifications] count];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    return [[userDefaults arrayForKey:@"AlarmArray"] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -71,8 +74,13 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     // Get list of local notifications
-    NSArray *localNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
-    UILocalNotification *localNotification = [localNotifications objectAtIndex:indexPath.row];
+    // NSArray *localNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    // UILocalNotification *localNotification = [localNotifications objectAtIndex:indexPath.row];
+    
+    // Get NSUserDefaults
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSArray *alarmArray = [userDefaults arrayForKey:@"AlarmArray"];
+    NSDictionary *alarmDict = [alarmArray objectAtIndex:indexPath.row];
     
 //    NSDate *object = _objects[indexPath.row];
 //    cell.textLabel.text = [object description];
@@ -81,7 +89,20 @@
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"HH:mm"];
-    fireTimeLabel.text = [formatter stringFromDate:localNotification.fireDate];
+    fireTimeLabel.text = [formatter stringFromDate:[alarmDict objectForKey:@"AlarmDate"]];
+    
+    UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectZero];
+    switchView.tag = [indexPath row];
+    if([[alarmDict objectForKey:@"AlarmSwitch"] isEqualToString:@"on"]){
+        [switchView setOn:YES animated:NO];
+        // switchview.on = YES;
+    }
+    else{
+        [switchView setOn:NO animated:NO];
+        // switchview.on = NO;
+    }
+    [switchView addTarget:self action:@selector(chick_Switch:) forControlEvents:UIControlEventValueChanged];
+    cell.accessoryView = switchView;
     
     return cell;
 }
@@ -134,6 +155,56 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)chick_Switch:(id)sender
+{
+    UISwitch *switchView = (UISwitch *)sender;
+    CGPoint hitPoint = [sender convertPoint:CGPointZero toView:self.tableView];
+    NSIndexPath *hitIndex = [self.tableView indexPathForRowAtPoint:hitPoint];
+    
+    if ([switchView isOn])  {
+        NSLog(@"open");
+        
+        
+        
+        
+    } else {
+        NSLog(@"close");
+        
+        // Get NSUserDefaults and update
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        NSArray *alarmArray = [userDefaults arrayForKey:@"AlarmArray"];
+        NSMutableArray *alarmMutableArray = [NSMutableArray arrayWithArray:alarmArray];
+        
+        NSDictionary *alarmDict = [alarmMutableArray objectAtIndex:hitIndex.row];
+        NSMutableDictionary *alarmMutableDict = [alarmDict mutableCopy];
+        
+        [alarmMutableDict setObject:@"off" forKey:@"AlarmSwitch"];
+        alarmDict = [NSDictionary dictionaryWithDictionary:alarmMutableDict];
+        [alarmMutableArray replaceObjectAtIndex:hitIndex.row withObject:alarmDict];
+        alarmArray = [NSArray arrayWithArray:alarmMutableArray];
+        [userDefaults setObject:alarmArray forKey:@"AlarmArray"];
+        [userDefaults synchronize];
+        
+        // Cancel LocalNotification
+        alarmDict = [alarmArray objectAtIndex:hitIndex.row];
+        NSString *alarmIndex = [alarmDict objectForKey:@"AlarmIndex"];
+        // Get list of local notifications
+        NSArray *localNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+        for(NSUInteger i=0; i<[localNotifications count]; i++){
+            UILocalNotification *localNotification = [localNotifications objectAtIndex:i];
+            
+            if([alarmIndex isEqualToString:[localNotification.userInfo objectForKey:@"AlarmIndex"]]){
+                [[UIApplication sharedApplication] cancelLocalNotification:localNotification];
+            }
+        }
+        
+        NSLog(@"alarmArray : %@", [userDefaults arrayForKey:@"AlarmArray"]);
+        NSLog(@"localNotificationArray : %@", localNotifications);
+        
+        
+    }
 }
 
 - (void)reloadTable
