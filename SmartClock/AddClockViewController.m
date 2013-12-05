@@ -107,7 +107,7 @@
 }
 
 -(IBAction)saveButtonPressed:(id)sender {
-    
+    // register notification
     // Covert to NSDate
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     NSTimeZone *tz = [NSTimeZone timeZoneWithName:@"Asia/Taipei"];
@@ -135,23 +135,18 @@
     NSString *alarmIndexString = [NSString stringWithFormat:@"%d_%d", (int)[nowDate timeIntervalSince1970], (int)[pickDate timeIntervalSince1970]];
     [setTime setValue:alarmIndexString forKey:@"id"];
     [setTime setValue:pickDate forKey:@"pickDate"];
+    [setTime setValue:@(YES) forKey:@"switch"];
     NSLog(@"setTime:%@",setTime);
     
     // Schedule the notification
     UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-    NSDate *now=[NSDate new];
     localNotification.fireDate = pickDate;
     localNotification.alertBody = @"Smart alarm time up";
-    //    localNotification.alertAction = @"Show me the item";
+    //localNotification.alertAction = @"Show me the item";
     localNotification.timeZone = [NSTimeZone defaultTimeZone];
     localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
     localNotification.userInfo = setTime;
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-    
-    //NSLog(@"alarmArray : %@", [userDefaults arrayForKey:@"AlarmArray"]);
-    
-    // Request to reload table view data
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
     
     if ([self.delegate respondsToSelector:@selector(setAddClockInfo:)]) {
         [self.delegate setValue:setTime forKey:@"addClockInfo"];

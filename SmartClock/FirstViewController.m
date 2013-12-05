@@ -18,8 +18,7 @@
 
 
 @interface FirstViewController () {
-    NSMutableArray *_clockArray;
-    NSMutableArray *_viewArray;
+
 }
 @end
 
@@ -33,27 +32,8 @@
     //init
     self.tableView.backgroundColor = [UIColor clearColor];
     _clockArray = [[NSMutableArray alloc] init];
-    _viewArray = [[NSMutableArray alloc] init];
-    
     [_clockArray addObject:@"addClock"];
     
-//    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 20, 320, 500)];
-//    view.backgroundColor = [UIColor redColor];
-//    [self.view insertSubview:view atIndex:0];
-//    
-//    view = [[UIView alloc] initWithFrame:CGRectMake(0, 20+100, 320, 500)];
-//    view.backgroundColor = [UIColor orangeColor];
-//    [self.view insertSubview:view atIndex:1];
-}
-
-- (IBAction)insertNewClock:(id)sender
-{
-//    if (!_clockArray) {
-//        _clockArray = [[NSMutableArray alloc] init];
-//    }
-//    [_clockArray insertObject:[NSDate date] atIndex:0];
-//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-//    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -129,6 +109,9 @@
         UILabel *AMPM = (UILabel*)[cell viewWithTag:Cell_AMPMTag];
         UILabel *time = (UILabel*)[cell viewWithTag:Cell_timeTag];
         UISwitch *switchButton = (UISwitch*)[cell viewWithTag:Cell_switchTag];
+        
+        //set switch, default yes
+        switchButton.on = [_clockArray[indexPath.row] objectForKey:@"switch"];
         
         //set time
         AMPM.text = [_clockArray[indexPath.row] objectForKey:@"AMPM"];
