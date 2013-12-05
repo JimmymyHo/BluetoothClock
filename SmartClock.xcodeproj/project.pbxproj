@@ -24,7 +24,8 @@
 		32095F801843491000EA751C /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32095F781843491000EA751C /* FirstViewController.m */; };
 		32095F811843491000EA751C /* AddClockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32095F7A1843491000EA751C /* AddClockViewController.m */; };
 		32095F821843491000EA751C /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32095F7C1843491000EA751C /* SecondViewController.m */; };
-		32095F9C18434CC500EA751C /* snfsdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32095F9B18434CC500EA751C /* snfsdk.framework */; };
+		3251B4BF184CF9D800D6D988 /* Weather-02@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3251B4BE184CF9D800D6D988 /* Weather-02@2x.png */; };
+		32B3C88E184F12950021C51D /* snfsdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B3C88D184F12950021C51D /* snfsdk.framework */; };
 		32C2ED6D184452E300410DB0 /* Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32C2ED5A184452E200410DB0 /* Background@2x.png */; };
 		32C2ED6E184452E300410DB0 /* Signal-01@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32C2ED5C184452E200410DB0 /* Signal-01@2x.png */; };
 		32C2ED6F184452E300410DB0 /* Signal-02@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32C2ED5D184452E200410DB0 /* Signal-02@2x.png */; };
@@ -38,7 +39,6 @@
 		32C2ED77184452E300410DB0 /* Tab Bar Icon-05@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32C2ED66184452E300410DB0 /* Tab Bar Icon-05@2x.png */; };
 		32C2ED78184452E300410DB0 /* Tab Bar Icon-06@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32C2ED67184452E300410DB0 /* Tab Bar Icon-06@2x.png */; };
 		32C2ED79184452E300410DB0 /* Weather-01@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32C2ED69184452E300410DB0 /* Weather-01@2x.png */; };
-		32C2ED7A184452E300410DB0 /* Weather-02@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32C2ED6A184452E300410DB0 /* Weather-02@2x.png */; };
 		32C2ED7B184452E300410DB0 /* Weather-03@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32C2ED6B184452E300410DB0 /* Weather-03@2x.png */; };
 		32C2ED7C184452E300410DB0 /* Weather-04@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32C2ED6C184452E300410DB0 /* Weather-04@2x.png */; };
 /* End PBXBuildFile section */
@@ -79,7 +79,8 @@
 		32095F7A1843491000EA751C /* AddClockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddClockViewController.m; sourceTree = "<group>"; };
 		32095F7B1843491000EA751C /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		32095F7C1843491000EA751C /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
-		32095F9B18434CC500EA751C /* snfsdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = snfsdk.framework; sourceTree = "<group>"; };
+		3251B4BE184CF9D800D6D988 /* Weather-02@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Weather-02@2x.png"; path = "SmartClock/Weather-02@2x.png"; sourceTree = SOURCE_ROOT; };
+		32B3C88D184F12950021C51D /* snfsdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = snfsdk.framework; sourceTree = "<group>"; };
 		32C2ED5A184452E200410DB0 /* Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Background@2x.png"; sourceTree = "<group>"; };
 		32C2ED5C184452E200410DB0 /* Signal-01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Signal-01@2x.png"; sourceTree = "<group>"; };
 		32C2ED5D184452E200410DB0 /* Signal-02@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Signal-02@2x.png"; sourceTree = "<group>"; };
@@ -93,7 +94,6 @@
 		32C2ED66184452E300410DB0 /* Tab Bar Icon-05@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tab Bar Icon-05@2x.png"; sourceTree = "<group>"; };
 		32C2ED67184452E300410DB0 /* Tab Bar Icon-06@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tab Bar Icon-06@2x.png"; sourceTree = "<group>"; };
 		32C2ED69184452E300410DB0 /* Weather-01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Weather-01@2x.png"; sourceTree = "<group>"; };
-		32C2ED6A184452E300410DB0 /* Weather-02@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Weather-02@2x.png"; sourceTree = "<group>"; };
 		32C2ED6B184452E300410DB0 /* Weather-03@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Weather-03@2x.png"; sourceTree = "<group>"; };
 		32C2ED6C184452E300410DB0 /* Weather-04@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Weather-04@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,7 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32095F9C18434CC500EA751C /* snfsdk.framework in Frameworks */,
+				32B3C88E184F12950021C51D /* snfsdk.framework in Frameworks */,
 				32095F3E184348C300EA751C /* CoreGraphics.framework in Frameworks */,
 				32095F40184348C300EA751C /* UIKit.framework in Frameworks */,
 				32095F3C184348C300EA751C /* Foundation.framework in Frameworks */,
@@ -145,7 +145,7 @@
 		32095F3A184348C300EA751C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				32095F9B18434CC500EA751C /* snfsdk.framework */,
+				32B3C88D184F12950021C51D /* snfsdk.framework */,
 				32095F3B184348C300EA751C /* Foundation.framework */,
 				32095F3D184348C300EA751C /* CoreGraphics.framework */,
 				32095F3F184348C300EA751C /* UIKit.framework */,
@@ -244,7 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				32C2ED69184452E300410DB0 /* Weather-01@2x.png */,
-				32C2ED6A184452E300410DB0 /* Weather-02@2x.png */,
+				3251B4BE184CF9D800D6D988 /* Weather-02@2x.png */,
 				32C2ED6B184452E300410DB0 /* Weather-03@2x.png */,
 				32C2ED6C184452E300410DB0 /* Weather-04@2x.png */,
 			);
@@ -328,9 +328,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				32C2ED6F184452E300410DB0 /* Signal-02@2x.png in Resources */,
+				3251B4BF184CF9D800D6D988 /* Weather-02@2x.png in Resources */,
 				32095F7E1843491000EA751C /* Main.storyboard in Resources */,
 				32C2ED77184452E300410DB0 /* Tab Bar Icon-05@2x.png in Resources */,
-				32C2ED7A184452E300410DB0 /* Weather-02@2x.png in Resources */,
 				32C2ED76184452E300410DB0 /* Tab Bar Icon-04@2x.png in Resources */,
 				32095F54184348C300EA751C /* Images.xcassets in Resources */,
 				32C2ED7C184452E300410DB0 /* Weather-04@2x.png in Resources */,

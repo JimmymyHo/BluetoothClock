@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddClockViewController : UIViewController <UIPickerViewDataSource,UIPickerViewDelegate>
+@interface AddClockViewController : UIViewController <UIPickerViewDataSource,UIPickerViewDelegate,UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) IBOutlet UIPickerView *pickerView;
 @property (nonatomic, strong) NSArray *noonArray;
 @property (nonatomic, strong) NSArray *hourArray;
 @property (nonatomic, strong) NSMutableArray *minuteArray;
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) id delegate;
 
 

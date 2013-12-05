@@ -66,11 +66,40 @@
 
 - (void)setAddClockInfo:(NSDictionary *)addClockInfo {
     _addClockInfo = addClockInfo;
-    NSLog(@"%i",_clockArray.count);
-    [_clockArray insertObject:_addClockInfo atIndex:_clockArray.count];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath]
-                          withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    [_clockArray insertObject:_addClockInfo atIndex:0];
+    [_clockArray removeObjectAtIndex:_clockArray.count-1];
+
+    //compare AMPM
+    _clockArray = [[_clockArray sortedArrayUsingComparator:^NSComparisonResult(id firstObject, id secondObject){
+        NSString *first = [firstObject objectForKey:@"AMPM"];
+        NSString *second = [secondObject objectForKey:@"AMPM"];
+        int result = [first compare:second];
+        if(result!=0)
+        {
+            return result;
+        }else //AMPM equal, compare hour
+        {
+            NSString *first = [firstObject objectForKey:@"hour"];
+            NSString *second = [secondObject objectForKey:@"hour"];
+            int result = [@([first intValue]) compare: @([second intValue])];
+            if (result != 0) {
+                return result;
+            }else { //hour equal, compare mins
+                NSString *first = [firstObject objectForKey:@"mins"];
+                NSString *second = [secondObject objectForKey:@"mins"];
+                return [@([first intValue]) compare: @([second intValue])];
+            }
+        }
+        
+    }] mutableCopy];
+    
+    [_clockArray insertObject:@"addClock" atIndex:_clockArray.count];
+    [self.tableView reloadData];
+    
+//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+//    [self.tableView insertRowsAtIndexPaths:@[indexPath]
+//                          withRowAnimation:UITableViewRowAnimationNone];
 }
 
 #pragma mark - Table View
@@ -101,11 +130,33 @@
         UILabel *time = (UILabel*)[cell viewWithTag:Cell_timeTag];
         UISwitch *switchButton = (UISwitch*)[cell viewWithTag:Cell_switchTag];
         
-        AMPM.text = [_addClockInfo objectForKey:@"AMPM"];
+        //set time
+        AMPM.text = [_clockArray[indexPath.row] objectForKey:@"AMPM"];
         time.text = [NSString stringWithFormat:@"%@:%@",
-                     [_addClockInfo objectForKey:@"hour"],[_addClockInfo objectForKey:@"mins"]];
+                     [_clockArray[indexPath.row] objectForKey:@"hour"],
+                     [_clockArray[indexPath.row] objectForKey:@"mins"]];
+        
+        //set image
+        if ([[_clockArray[indexPath.row] objectForKey:@"AMPM"] isEqualToString:@"AM"] &&
+            [[_clockArray[indexPath.row] objectForKey:@"hour"] intValue] <= 11 &&
+            [[_clockArray[indexPath.row] objectForKey:@"hour"] intValue] >= 6) {
+            imageView.image = [UIImage imageNamed:@"Weather-01.png"];
+        }else if([[_clockArray[indexPath.row] objectForKey:@"AMPM"] isEqualToString:@"AM"] &&
+                 [[_clockArray[indexPath.row] objectForKey:@"hour"] intValue] == 11) {
+            imageView.image = [UIImage imageNamed:@"Weather-02.png"];
+        }else if ([[_clockArray[indexPath.row] objectForKey:@"AMPM"] isEqualToString:@"PM"] &&
+                  [[_clockArray[indexPath.row] objectForKey:@"hour"] intValue] == 12){
+            imageView.image = [UIImage imageNamed:@"Weather-02.png"];
+        }else if ([[_clockArray[indexPath.row] objectForKey:@"AMPM"] isEqualToString:@"PM"] &&
+                  [[_clockArray[indexPath.row] objectForKey:@"hour"] intValue] <= 2){
+            imageView.image = [UIImage imageNamed:@"Weather-02.png"];
+        }else if (([[_clockArray[indexPath.row] objectForKey:@"AMPM"] isEqualToString:@"PM"] &&
+                   [[_clockArray[indexPath.row] objectForKey:@"hour"] intValue] <= 6)) {
+            imageView.image = [UIImage imageNamed:@"Weather-03.png"];
+        }else {
+            imageView.image = [UIImage imageNamed:@"Weather-04.png"];
+        }
     }
-    //NSDate *object = _clockArray[indexPath.row];
     cell.backgroundColor = [UIColor clearColor];
 
     return cell;
