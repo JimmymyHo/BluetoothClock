@@ -64,7 +64,6 @@
     NSArray *values = [NSArray arrayWithObjects:nowTime[0],nowTime[1],nowTime[3],nil];
     
     setTime = [NSMutableDictionary dictionaryWithObjects:values forKeys:keys];
-
 }
 
 - (NSArray*)getNowTime {
@@ -108,7 +107,52 @@
 }
 
 -(IBAction)saveButtonPressed:(id)sender {
-    NSLog(@"setTime:%@",[setTime objectForKey:@"AMPM"]);
+    
+    // Covert to NSDate
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSTimeZone *tz = [NSTimeZone timeZoneWithName:@"Asia/Taipei"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss aa"];
+    [dateFormatter setTimeZone:tz];
+    
+    
+    NSDate *nowDate = [NSDate new];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *nowDateComponents = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:nowDate];
+    
+    NSString *hour = [setTime valueForKey:@"hour"];
+    NSString *mins = [setTime valueForKey:@"mins"];
+    NSString *AMPM = [setTime valueForKey:@"AMPM"];
+    
+    NSDate *pickDate = [dateFormatter dateFromString: [NSString stringWithFormat:@"%d-%d-%d %@:%@:00 %@", [nowDateComponents year], [nowDateComponents month], [nowDateComponents day],hour,mins,AMPM]];
+    
+    if ([nowDate compare:pickDate] == NSOrderedDescending) {
+        NSLog(@"nowDate is later than pickDate");
+        pickDate = [pickDate dateByAddingTimeInterval:60*60*24*1];
+    }
+    
+    NSLog(@"%@", [pickDate descriptionWithLocale:[NSLocale systemLocale]]);
+    
+    NSString *alarmIndexString = [NSString stringWithFormat:@"%d_%d", (int)[nowDate timeIntervalSince1970], (int)[pickDate timeIntervalSince1970]];
+    [setTime setValue:alarmIndexString forKey:@"id"];
+    [setTime setValue:pickDate forKey:@"pickDate"];
+    NSLog(@"setTime:%@",setTime);
+    
+    // Schedule the notification
+    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+    NSDate *now=[NSDate new];
+    localNotification.fireDate = pickDate;
+    localNotification.alertBody = @"Smart alarm time up";
+    //    localNotification.alertAction = @"Show me the item";
+    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+    localNotification.userInfo = setTime;
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    
+    //NSLog(@"alarmArray : %@", [userDefaults arrayForKey:@"AlarmArray"]);
+    
+    // Request to reload table view data
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
+    
     if ([self.delegate respondsToSelector:@selector(setAddClockInfo:)]) {
         [self.delegate setValue:setTime forKey:@"addClockInfo"];
     }
