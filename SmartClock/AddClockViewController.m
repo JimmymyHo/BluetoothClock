@@ -73,22 +73,26 @@
     [dateFormatter setTimeZone:[NSTimeZone localTimeZone]];
     NSString *currentTime = [dateFormatter stringFromDate:[NSDate date]];
     
-    //simulator version , time format: xx:xx:xx PM
+#if TARGET_IPHONE_SIMULATOR
+    // It's running on the simulator, time format: xx:xx:xx PM
     NSArray *temp = [currentTime componentsSeparatedByString:@" "];
     NSMutableArray *result = (NSMutableArray*)[temp[0] componentsSeparatedByString:@":"];
     [result addObject:temp[1]];
     return result;
-    
-    //chinese version , time format: 上午xx:xx:xx
-//    NSMutableArray *temp = [NSMutableArray array];
-//    NSString *time = [currentTime substringFromIndex:2];
-//    temp = (NSMutableArray*)[time componentsSeparatedByString:@":"];
-//    if ([[currentTime substringToIndex:2] isEqualToString:@"上午"]) {
-//        [temp addObject:@"AM"];
-//    }else {
-//        [temp addObject:@"PM"];
-//    }
-//    return temp;
+#else
+    // Running on Actual Device
+    // chinese version , time format: 上午xx:xx:xx
+    NSMutableArray *temp = [NSMutableArray array];
+    NSString *time = [currentTime substringFromIndex:2];
+    temp = (NSMutableArray*)[time componentsSeparatedByString:@":"];
+    if ([[currentTime substringToIndex:2] isEqualToString:@"上午"]) {
+        [temp addObject:@"AM"];
+    }else {
+        [temp addObject:@"PM"];
+    }
+    return temp;
+#endif
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -113,6 +117,8 @@
     NSTimeZone *tz = [NSTimeZone timeZoneWithName:@"Asia/Taipei"];
     [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss aa"];
     [dateFormatter setTimeZone:tz];
+//    NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_TW"];
+//    [dateFormatter setLocale:usLocale];
     
     
     NSDate *nowDate = [NSDate new];
@@ -135,7 +141,7 @@
     NSString *alarmIndexString = [NSString stringWithFormat:@"%d_%d", (int)[nowDate timeIntervalSince1970], (int)[pickDate timeIntervalSince1970]];
     [setTime setValue:alarmIndexString forKey:@"id"];
     [setTime setValue:pickDate forKey:@"pickDate"];
-    [setTime setValue:@(YES) forKey:@"switch"];
+    [setTime setValue:@"on" forKey:@"switch"];
     NSLog(@"setTime:%@",setTime);
     
     // Schedule the notification

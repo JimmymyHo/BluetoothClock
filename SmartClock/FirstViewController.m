@@ -82,6 +82,24 @@
 //                          withRowAnimation:UITableViewRowAnimationNone];
 }
 
+- (void)reloadTable {
+    [self.tableView reloadData];
+}
+
+- (IBAction)switchValueChange:(id)sender{
+    UISwitch *switchButton = (UISwitch*)sender;
+    UITableViewCell *cell = (UITableViewCell*)switchButton.superview.superview.superview;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    switchButton = (UISwitch*)[cell viewWithTag: Cell_switchTag];
+    if ([[_clockArray[indexPath.row] valueForKey:@"switch"] isEqualToString:@"on"]) {
+        [_clockArray[indexPath.row] setValue:@"off" forKey:@"switch"];
+    }else{
+        [_clockArray[indexPath.row] setValue:@"on" forKey:@"switch"];
+    }
+    NSLog(@"row:%i",indexPath.row);
+    [self performSelector:@selector(reloadTable) withObject:self afterDelay:0.2];
+}
+
 #pragma mark - Table View
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -96,7 +114,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"indexRow:%i,objectCount:%i",indexPath.row,_clockArray.count);
     UITableViewCell *cell;
     if (indexPath.row == [_clockArray count]-1) {
         cell = [tableView
@@ -110,8 +127,12 @@
         UILabel *time = (UILabel*)[cell viewWithTag:Cell_timeTag];
         UISwitch *switchButton = (UISwitch*)[cell viewWithTag:Cell_switchTag];
         
-        //set switch, default yes
-        switchButton.on = [_clockArray[indexPath.row] objectForKey:@"switch"];
+        //set switch
+        if ([[_clockArray[indexPath.row] valueForKey:@"switch"] isEqualToString:@"on"]) {
+            switchButton.on = YES;
+        }else{
+            switchButton.on = NO;
+        }
         
         //set time
         AMPM.text = [_clockArray[indexPath.row] objectForKey:@"AMPM"];
@@ -139,8 +160,18 @@
         }else {
             imageView.image = [UIImage imageNamed:@"Weather-04.png"];
         }
+        if (switchButton.on) {
+            [UIView animateWithDuration:0.2 animations:^{
+                cell.contentView.alpha = 1;
+            }];
+        }else{
+            [UIView animateWithDuration:0.2 animations:^{
+                cell.contentView.alpha = 0.2;
+            }];
+        }
     }
     cell.backgroundColor = [UIColor clearColor];
+
 
     return cell;
 }
@@ -148,6 +179,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //[self.tableView setContentOffset:CGPointMake(0, 100*indexPath.row) animated:YES];
+    NSLog(@"%@",_clockArray);
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
