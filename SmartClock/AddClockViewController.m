@@ -7,6 +7,7 @@
 //
 
 #import "AddClockViewController.h"
+#import "RepeatViewController.h"
 
 @interface AddClockViewController (){
     NSArray *nowTime;
@@ -26,6 +27,10 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
+}
 
 - (void)viewDidLoad
 {
@@ -46,7 +51,10 @@
     self.noonArray = @[@"AM",@"PM"];
     self.hourArray = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11",@"12"];
     self.minuteArray = [NSMutableArray arrayWithCapacity:60];
-    for (int i=0; i<60; i++) {
+    for (int i=0; i<10; i++) {
+        [self.minuteArray addObject:[NSString stringWithFormat:@"0%d",i]];
+    }
+    for (int i=10; i<60; i++) {
         [self.minuteArray addObject:[NSString stringWithFormat:@"%d",i]];
     }
 
@@ -64,6 +72,8 @@
     NSArray *values = [NSArray arrayWithObjects:nowTime[0],nowTime[1],nowTime[3],nil];
     
     setTime = [NSMutableDictionary dictionaryWithObjects:values forKeys:keys];
+    
+    self.alarmLabel = @"";
 }
 
 - (NSArray*)getNowTime {
@@ -95,6 +105,10 @@
 
 }
 
+- (void)setCheckArray:(NSArray *)checkArray {
+    _checkArray = checkArray;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -103,7 +117,13 @@
 
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
+    if ([segue.identifier isEqualToString:@"REPEAT"]) {
+        [segue.destinationViewController setValue:self forKey:@"delegate"];
+        [segue.destinationViewController setValue:_checkArray forKey:@"checkArray"];
+    }else if ([segue.identifier isEqualToString:@"LABEL"]){
+        [segue.destinationViewController setValue:self forKey:@"delegate"];
+        [segue.destinationViewController setValue:_alarmLabel forKey:@"alarmLabel"];
+    }
 }
 
 -(IBAction)cancelButtonPressed:(id)sender {
@@ -111,41 +131,59 @@
 }
 
 -(IBAction)saveButtonPressed:(id)sender {
-    // register notification
-    // Covert to NSDate
+    
+    [self createNotificationData];
+    
+    //set delegate value
+    if ([self.delegate respondsToSelector:@selector(setAddClockInfo:)]) {
+        [self.delegate setValue:setTime forKey:@"addClockInfo"];
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)createNotificationData {
+    //set dateFormatter
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     NSTimeZone *tz = [NSTimeZone timeZoneWithName:@"Asia/Taipei"];
     [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss aa"];
     [dateFormatter setTimeZone:tz];
-//    NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_TW"];
-//    [dateFormatter setLocale:usLocale];
+    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
     
-    
+    //get now time
     NSDate *nowDate = [NSDate new];
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *nowDateComponents = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:nowDate];
     
+    //get setTime value
     NSString *hour = [setTime valueForKey:@"hour"];
     NSString *mins = [setTime valueForKey:@"mins"];
     NSString *AMPM = [setTime valueForKey:@"AMPM"];
     
+    //create notification time
     NSDate *pickDate = [dateFormatter dateFromString: [NSString stringWithFormat:@"%d-%d-%d %@:%@:00 %@", [nowDateComponents year], [nowDateComponents month], [nowDateComponents day],hour,mins,AMPM]];
-    
+    //today or tomorrow
     if ([nowDate compare:pickDate] == NSOrderedDescending) {
         NSLog(@"nowDate is later than pickDate");
         pickDate = [pickDate dateByAddingTimeInterval:60*60*24*1];
     }
-    
     NSLog(@"%@", [pickDate descriptionWithLocale:[NSLocale systemLocale]]);
     
+    //create id
     NSString *alarmIndexString = [NSString stringWithFormat:@"%d_%d", (int)[nowDate timeIntervalSince1970], (int)[pickDate timeIntervalSince1970]];
+    
+    //set setTime value
     [setTime setValue:alarmIndexString forKey:@"id"];
     [setTime setValue:pickDate forKey:@"pickDate"];
     [setTime setValue:@"on" forKey:@"switch"];
+    if (self.checkArray != nil) {
+        [setTime setValue:self.checkArray forKey:@"repeat"];
+    }
+    [setTime setValue:self.alarmLabel forKey:@"label"];
     NSLog(@"setTime:%@",setTime);
     
     // Schedule the notification
     UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+    localNotification.soundName = UILocalNotificationDefaultSoundName;
     localNotification.fireDate = pickDate;
     localNotification.alertBody = @"Smart alarm time up";
     //localNotification.alertAction = @"Show me the item";
@@ -153,11 +191,6 @@
     localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
     localNotification.userInfo = setTime;
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-    
-    if ([self.delegate respondsToSelector:@selector(setAddClockInfo:)]) {
-        [self.delegate setValue:setTime forKey:@"addClockInfo"];
-    }
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - UITableView method
@@ -177,9 +210,43 @@
     if (indexPath.row == 0) {
         cell = [tableView
                 dequeueReusableCellWithIdentifier:@"REPEAT" forIndexPath:indexPath];
+        NSString *detailString = @"";
+        for (int i=0; i<7; i++) {
+            if ([_checkArray[i] isEqualToString:@"check"]) {
+                if (i==0) {
+                    detailString = [detailString stringByAppendingString:@"Sun "];
+                }else if (i==1){
+                    detailString = [detailString stringByAppendingString:@"Mon "];
+                }else if (i==2){
+                    detailString = [detailString stringByAppendingString:@"Tue "];
+                }else if (i==3){
+                    detailString = [detailString stringByAppendingString:@"Wed "];
+                }else if (i==4){
+                    detailString = [detailString stringByAppendingString:@"Thu "];
+                }else if (i==5){
+                    detailString = [detailString stringByAppendingString:@"Fri "];
+                }else if (i==6){
+                    detailString = [detailString stringByAppendingString:@"Sat "];
+                }
+            }
+        }
+        if ([detailString isEqualToString:@""]) {
+            detailString = @"Never";
+        }
+        if (detailString.length > 24) {
+            detailString = @"Every day";
+        }
+        cell.detailTextLabel.text = detailString;
+        
     }else if (indexPath.row == 1){
         cell = [tableView
                 dequeueReusableCellWithIdentifier:@"LABEL" forIndexPath:indexPath];
+        if ([self.alarmLabel isEqualToString:@""]) {
+            self.alarmLabel = @"Alarm";
+        }
+        cell.detailTextLabel.text = self.alarmLabel;
+        
+        
     }else {
         cell = [tableView
                 dequeueReusableCellWithIdentifier:@"RINGTONE" forIndexPath:indexPath];
@@ -191,7 +258,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if ([cell.reuseIdentifier isEqualToString:@"REPEAT"]) {
+        //[self performSegueWithIdentifier:@"" sender:self];
+    }else if ([cell.reuseIdentifier isEqualToString:@"LABLE"]){
+        
+    }else{
+        
+    }
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

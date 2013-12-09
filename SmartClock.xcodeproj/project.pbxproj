@@ -25,6 +25,10 @@
 		32095F811843491000EA751C /* AddClockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32095F7A1843491000EA751C /* AddClockViewController.m */; };
 		32095F821843491000EA751C /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32095F7C1843491000EA751C /* SecondViewController.m */; };
 		3251B4BF184CF9D800D6D988 /* Weather-02@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3251B4BE184CF9D800D6D988 /* Weather-02@2x.png */; };
+		3258E7211855A93F0034C65E /* RepeatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3258E7201855A93F0034C65E /* RepeatViewController.m */; };
+		3258E7241855A9840034C65E /* LabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3258E7231855A9840034C65E /* LabelViewController.m */; };
+		3258E7271855A98C0034C65E /* SongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3258E7261855A98C0034C65E /* SongViewController.m */; };
+		32989E7318563C6B00B1A87B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32989E7218563C6B00B1A87B /* AudioToolbox.framework */; };
 		32B3C88E184F12950021C51D /* snfsdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B3C88D184F12950021C51D /* snfsdk.framework */; };
 		32C2ED6D184452E300410DB0 /* Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32C2ED5A184452E200410DB0 /* Background@2x.png */; };
 		32C2ED6E184452E300410DB0 /* Signal-01@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32C2ED5C184452E200410DB0 /* Signal-01@2x.png */; };
@@ -80,6 +84,13 @@
 		32095F7B1843491000EA751C /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		32095F7C1843491000EA751C /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		3251B4BE184CF9D800D6D988 /* Weather-02@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Weather-02@2x.png"; path = "SmartClock/Weather-02@2x.png"; sourceTree = SOURCE_ROOT; };
+		3258E71F1855A93F0034C65E /* RepeatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepeatViewController.h; path = ../RepeatViewController.h; sourceTree = "<group>"; };
+		3258E7201855A93F0034C65E /* RepeatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RepeatViewController.m; path = ../RepeatViewController.m; sourceTree = "<group>"; };
+		3258E7221855A9840034C65E /* LabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LabelViewController.h; path = ../LabelViewController.h; sourceTree = "<group>"; };
+		3258E7231855A9840034C65E /* LabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LabelViewController.m; path = ../LabelViewController.m; sourceTree = "<group>"; };
+		3258E7251855A98C0034C65E /* SongViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SongViewController.h; path = ../SongViewController.h; sourceTree = "<group>"; };
+		3258E7261855A98C0034C65E /* SongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SongViewController.m; path = ../SongViewController.m; sourceTree = "<group>"; };
+		32989E7218563C6B00B1A87B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		32B3C88D184F12950021C51D /* snfsdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = snfsdk.framework; sourceTree = "<group>"; };
 		32C2ED5A184452E200410DB0 /* Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Background@2x.png"; sourceTree = "<group>"; };
 		32C2ED5C184452E200410DB0 /* Signal-01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Signal-01@2x.png"; sourceTree = "<group>"; };
@@ -103,6 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32989E7318563C6B00B1A87B /* AudioToolbox.framework in Frameworks */,
 				32B3C88E184F12950021C51D /* snfsdk.framework in Frameworks */,
 				32095F3E184348C300EA751C /* CoreGraphics.framework in Frameworks */,
 				32095F40184348C300EA751C /* UIKit.framework in Frameworks */,
@@ -145,6 +157,7 @@
 		32095F3A184348C300EA751C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				32989E7218563C6B00B1A87B /* AudioToolbox.framework */,
 				32B3C88D184F12950021C51D /* snfsdk.framework */,
 				32095F3B184348C300EA751C /* Foundation.framework */,
 				32095F3D184348C300EA751C /* CoreGraphics.framework */,
@@ -166,6 +179,12 @@
 				32095F781843491000EA751C /* FirstViewController.m */,
 				32095F791843491000EA751C /* AddClockViewController.h */,
 				32095F7A1843491000EA751C /* AddClockViewController.m */,
+				3258E71F1855A93F0034C65E /* RepeatViewController.h */,
+				3258E7201855A93F0034C65E /* RepeatViewController.m */,
+				3258E7221855A9840034C65E /* LabelViewController.h */,
+				3258E7231855A9840034C65E /* LabelViewController.m */,
+				3258E7251855A98C0034C65E /* SongViewController.h */,
+				3258E7261855A98C0034C65E /* SongViewController.m */,
 				32095F7B1843491000EA751C /* SecondViewController.h */,
 				32095F7C1843491000EA751C /* SecondViewController.m */,
 				32095F53184348C300EA751C /* Images.xcassets */,
@@ -364,12 +383,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3258E7271855A98C0034C65E /* SongViewController.m in Sources */,
 				32095F821843491000EA751C /* SecondViewController.m in Sources */,
 				32095F811843491000EA751C /* AddClockViewController.m in Sources */,
 				32095F7D1843491000EA751C /* AppDelegate.m in Sources */,
 				32095F7F1843491000EA751C /* TabBarViewController.m in Sources */,
 				32095F48184348C300EA751C /* main.m in Sources */,
+				3258E7211855A93F0034C65E /* RepeatViewController.m in Sources */,
 				32095F801843491000EA751C /* FirstViewController.m in Sources */,
+				3258E7241855A9840034C65E /* LabelViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

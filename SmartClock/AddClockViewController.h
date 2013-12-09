@@ -16,5 +16,7 @@
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) id delegate;
 
+@property (nonatomic, strong) NSArray *checkArray;
+@property (nonatomic, strong) NSString *alarmLabel;
 
 @end

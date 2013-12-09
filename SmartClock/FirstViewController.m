@@ -18,7 +18,8 @@
 
 
 @interface FirstViewController () {
-
+    float preOffset;
+    BOOL blockTapCell;
 }
 @end
 
@@ -31,8 +32,29 @@
 
     //init
     self.tableView.backgroundColor = [UIColor clearColor];
-    _clockArray = [[NSMutableArray alloc] init];
-    [_clockArray addObject:@"addClock"];
+    
+    //get disk clock data
+    NSUserDefaults *userDefaultes = [NSUserDefaults standardUserDefaults];
+    _clockArray = [userDefaultes valueForKey:@"clockArray"];
+    if (_clockArray == nil) {
+        _clockArray = [[NSMutableArray alloc] init];
+        [_clockArray addObject:@"addClock"];
+    }else{
+        NSLog(@"Data in disk:%@",_clockArray);
+    }
+    
+    //add NSNotificaiton observer
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(saveClockData)
+                                                 name:@"saveClockData"
+                                               object:nil];
+    
+}
+
+-(void)saveClockData {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:_clockArray forKey:@"clockArray"];
+    [userDefaults synchronize];
     
 }
 
@@ -136,6 +158,8 @@
         
         //set time
         AMPM.text = [_clockArray[indexPath.row] objectForKey:@"AMPM"];
+//        AMPM.layer.borderColor = [[UIColor redColor] CGColor];
+//        AMPM.layer.borderWidth = 1.0;
         time.text = [NSString stringWithFormat:@"%@:%@",
                      [_clockArray[indexPath.row] objectForKey:@"hour"],
                      [_clockArray[indexPath.row] objectForKey:@"mins"]];
@@ -178,8 +202,22 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //[self.tableView setContentOffset:CGPointMake(0, 100*indexPath.row) animated:YES];
-    NSLog(@"%@",_clockArray);
+
+    if (!blockTapCell) {
+        [self.tableView setContentOffset:CGPointMake(0, 100*indexPath.row) animated:YES];
+        blockTapCell = YES;
+        self.tableView.scrollEnabled = NO;
+    }else {
+        [self.tableView setContentOffset:CGPointMake(0, preOffset) animated:YES];
+        blockTapCell = NO;
+        self.tableView.scrollEnabled = YES;
+    }
+    preOffset = self.tableView.contentOffset.y;
+    NSLog(@"preOffset:%f",self.tableView.contentOffset.y);
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
