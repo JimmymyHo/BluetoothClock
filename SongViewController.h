@@ -12,4 +12,5 @@
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) id delegate;
 @property (nonatomic, strong) NSString *songName;
+@property (nonatomic, strong) NSString *isEdit;
 @end

@@ -28,6 +28,11 @@
 		3258E7211855A93F0034C65E /* RepeatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3258E7201855A93F0034C65E /* RepeatViewController.m */; };
 		3258E7241855A9840034C65E /* LabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3258E7231855A9840034C65E /* LabelViewController.m */; };
 		3258E7271855A98C0034C65E /* SongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3258E7261855A98C0034C65E /* SongViewController.m */; };
+		327983681856D935003A7ADC /* Country.wav in Resources */ = {isa = PBXBuildFile; fileRef = 327983631856D935003A7ADC /* Country.wav */; };
+		327983691856D935003A7ADC /* Funk.wav in Resources */ = {isa = PBXBuildFile; fileRef = 327983641856D935003A7ADC /* Funk.wav */; };
+		3279836A1856D935003A7ADC /* Guitar.wav in Resources */ = {isa = PBXBuildFile; fileRef = 327983651856D935003A7ADC /* Guitar.wav */; };
+		3279836B1856D935003A7ADC /* Jazz.wav in Resources */ = {isa = PBXBuildFile; fileRef = 327983661856D935003A7ADC /* Jazz.wav */; };
+		3279836C1856D935003A7ADC /* Latin.wav in Resources */ = {isa = PBXBuildFile; fileRef = 327983671856D935003A7ADC /* Latin.wav */; };
 		32989E7318563C6B00B1A87B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32989E7218563C6B00B1A87B /* AudioToolbox.framework */; };
 		32B3C88E184F12950021C51D /* snfsdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B3C88D184F12950021C51D /* snfsdk.framework */; };
 		32C2ED6D184452E300410DB0 /* Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32C2ED5A184452E200410DB0 /* Background@2x.png */; };
@@ -90,6 +95,11 @@
 		3258E7231855A9840034C65E /* LabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LabelViewController.m; path = ../LabelViewController.m; sourceTree = "<group>"; };
 		3258E7251855A98C0034C65E /* SongViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SongViewController.h; path = ../SongViewController.h; sourceTree = "<group>"; };
 		3258E7261855A98C0034C65E /* SongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SongViewController.m; path = ../SongViewController.m; sourceTree = "<group>"; };
+		327983631856D935003A7ADC /* Country.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Country.wav; sourceTree = "<group>"; };
+		327983641856D935003A7ADC /* Funk.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Funk.wav; sourceTree = "<group>"; };
+		327983651856D935003A7ADC /* Guitar.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Guitar.wav; sourceTree = "<group>"; };
+		327983661856D935003A7ADC /* Jazz.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Jazz.wav; sourceTree = "<group>"; };
+		327983671856D935003A7ADC /* Latin.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Latin.wav; sourceTree = "<group>"; };
 		32989E7218563C6B00B1A87B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		32B3C88D184F12950021C51D /* snfsdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = snfsdk.framework; sourceTree = "<group>"; };
 		32C2ED5A184452E200410DB0 /* Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Background@2x.png"; sourceTree = "<group>"; };
@@ -196,6 +206,11 @@
 		32095F42184348C300EA751C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				327983631856D935003A7ADC /* Country.wav */,
+				327983641856D935003A7ADC /* Funk.wav */,
+				327983651856D935003A7ADC /* Guitar.wav */,
+				327983661856D935003A7ADC /* Jazz.wav */,
+				327983671856D935003A7ADC /* Latin.wav */,
 				32C2ED59184452E200410DB0 /* Background */,
 				32C2ED5B184452E200410DB0 /* Signal */,
 				32C2ED60184452E200410DB0 /* Tab Bar */,
@@ -361,8 +376,13 @@
 				32C2ED71184452E300410DB0 /* Signal-04@2x.png in Resources */,
 				32095F46184348C300EA751C /* InfoPlist.strings in Resources */,
 				32C2ED70184452E300410DB0 /* Signal-03@2x.png in Resources */,
+				327983681856D935003A7ADC /* Country.wav in Resources */,
+				3279836B1856D935003A7ADC /* Jazz.wav in Resources */,
+				327983691856D935003A7ADC /* Funk.wav in Resources */,
 				32C2ED79184452E300410DB0 /* Weather-01@2x.png in Resources */,
+				3279836A1856D935003A7ADC /* Guitar.wav in Resources */,
 				32C2ED73184452E300410DB0 /* Tab Bar Icon-01@2x.png in Resources */,
+				3279836C1856D935003A7ADC /* Latin.wav in Resources */,
 				32C2ED6E184452E300410DB0 /* Signal-01@2x.png in Resources */,
 				32C2ED74184452E300410DB0 /* Tab Bar Icon-02@2x.png in Resources */,
 			);

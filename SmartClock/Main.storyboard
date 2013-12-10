@@ -666,11 +666,12 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="LYk-ZS-Vk3" id="IGg-4j-0as"/>
+                        <segue destination="fBq-WM-Mtv" kind="modal" identifier="EditClockSegue" modalTransitionStyle="crossDissolve" id="u0n-ja-FtA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sob-aS-78j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="632" y="-138"/>
+            <point key="canvasLocation" x="653" y="-138"/>
         </scene>
         <!--Navigation Controller - Signal-->
         <scene sceneID="J38-sr-Xkb">
@@ -715,6 +716,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fBq-WM-Mtv" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="O5D-4s-9Si"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="z9h-AG-LG2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -743,4 +745,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="u0n-ja-FtA"/>
+    </inferredMetricsTieBreakers>
 </document>

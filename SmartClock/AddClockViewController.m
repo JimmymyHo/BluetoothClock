@@ -37,6 +37,44 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    [self setupInitData];
+    
+    if (self.alarmData != nil) { //edit old alarm
+        self.navigationItem.title = @"Edit Alarm";
+        if ([[self.alarmData valueForKey:@"AMPM"] isEqualToString:@"AM"]) {
+            [self.pickerView selectRow:0 inComponent:0 animated:NO];
+        }else{
+            [self.pickerView selectRow:1 inComponent:0 animated:NO];
+        }
+        [self.pickerView selectRow:(1000-5+
+                            [[self.alarmData valueForKey:@"hour"] intValue]) inComponent:1 animated:NO];
+        [self.pickerView selectRow:(1000-40+
+                            [[self.alarmData valueForKey:@"mins"] intValue]) inComponent:2 animated:NO];
+    }else { //add new alarm
+        self.navigationItem.title = @"Add Alarm";
+        nowTime = [self getNowTime];
+        NSLog(@"nowTime:%@",nowTime);
+        if ([nowTime[3] isEqualToString:@"AM"]) {
+            [self.pickerView selectRow:0 inComponent:0 animated:NO];
+        }else{
+            [self.pickerView selectRow:1 inComponent:0 animated:NO];
+        }
+        [self.pickerView selectRow:(1000-5+[nowTime[0] intValue]) inComponent:1 animated:NO];
+        [self.pickerView selectRow:(1000-40+[nowTime[1] intValue]) inComponent:2 animated:NO];
+        
+        NSArray *keys = [NSArray arrayWithObjects:@"hour",@"mins",@"AMPM",nil];
+        NSArray *values = [NSArray arrayWithObjects:nowTime[0],nowTime[1],nowTime[3],nil];
+        
+        setTime = [NSMutableDictionary dictionaryWithObjects:values forKeys:keys];
+        
+        //init detailLabel
+        self.alarmLabel = @"";
+        self.songName = @"";
+    }
+
+}
+
+- (void)setupInitData {
     //translucent navigationBar
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
                                                   forBarMetrics:UIBarMetricsDefault];
@@ -57,23 +95,6 @@
     for (int i=10; i<60; i++) {
         [self.minuteArray addObject:[NSString stringWithFormat:@"%d",i]];
     }
-
-    nowTime = [self getNowTime];
-    NSLog(@"nowTime:%@",nowTime);
-    if ([nowTime[3] isEqualToString:@"AM"]) {
-        [self.pickerView selectRow:0 inComponent:0 animated:NO];
-    }else{
-        [self.pickerView selectRow:1 inComponent:0 animated:NO];
-    }
-    [self.pickerView selectRow:(1000-5+[nowTime[0] intValue]) inComponent:1 animated:NO];
-    [self.pickerView selectRow:(1000-40+[nowTime[1] intValue]) inComponent:2 animated:NO];
-    
-    NSArray *keys = [NSArray arrayWithObjects:@"hour",@"mins",@"AMPM",nil];
-    NSArray *values = [NSArray arrayWithObjects:nowTime[0],nowTime[1],nowTime[3],nil];
-    
-    setTime = [NSMutableDictionary dictionaryWithObjects:values forKeys:keys];
-    
-    self.alarmLabel = @"";
 }
 
 - (NSArray*)getNowTime {
@@ -117,12 +138,37 @@
 
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"REPEAT"]) {
-        [segue.destinationViewController setValue:self forKey:@"delegate"];
-        [segue.destinationViewController setValue:_checkArray forKey:@"checkArray"];
-    }else if ([segue.identifier isEqualToString:@"LABEL"]){
-        [segue.destinationViewController setValue:self forKey:@"delegate"];
-        [segue.destinationViewController setValue:_alarmLabel forKey:@"alarmLabel"];
+    if (self.alarmData != nil) {
+        if ([segue.identifier isEqualToString:@"REPEAT"]) {
+            [segue.destinationViewController setValue:self forKey:@"delegate"];
+            [segue.destinationViewController setValue:[self.alarmData
+                                                       valueForKey:@"repeat"] forKey:@"checkArray"];
+            [segue.destinationViewController setValue:@"YES" forKey:@"isEdit"];
+        }else if ([segue.identifier isEqualToString:@"LABEL"]){
+            [segue.destinationViewController setValue:self forKey:@"delegate"];
+            [segue.destinationViewController setValue:[self.alarmData
+                                                       valueForKey:@"label"] forKey:@"alarmLabel"];
+            [segue.destinationViewController setValue:@"YES" forKey:@"isEdit"];
+        }else if ([segue.identifier isEqualToString:@"SOUND"]){
+            [segue.destinationViewController setValue:self forKey:@"delegate"];
+            [segue.destinationViewController setValue:[self.alarmData
+                                                       valueForKey:@"song"] forKey:@"songName"];
+            [segue.destinationViewController setValue:@"YES" forKey:@"isEdit"];
+        }
+    }else {
+        if ([segue.identifier isEqualToString:@"REPEAT"]) {
+            [segue.destinationViewController setValue:self forKey:@"delegate"];
+            [segue.destinationViewController setValue:_checkArray forKey:@"checkArray"];
+            [segue.destinationViewController setValue:@"NO" forKey:@"isEdit"];
+        }else if ([segue.identifier isEqualToString:@"LABEL"]){
+            [segue.destinationViewController setValue:self forKey:@"delegate"];
+            [segue.destinationViewController setValue:_alarmLabel forKey:@"alarmLabel"];
+            [segue.destinationViewController setValue:@"NO" forKey:@"isEdit"];
+        }else if ([segue.identifier isEqualToString:@"SOUND"]){
+            [segue.destinationViewController setValue:self forKey:@"delegate"];
+            [segue.destinationViewController setValue:_songName forKey:@"songName"];
+            [segue.destinationViewController setValue:@"NO" forKey:@"isEdit"];
+        }
     }
 }
 
@@ -179,6 +225,7 @@
         [setTime setValue:self.checkArray forKey:@"repeat"];
     }
     [setTime setValue:self.alarmLabel forKey:@"label"];
+    [setTime setValue:self.songName forKey:@"song"];
     NSLog(@"setTime:%@",setTime);
     
     // Schedule the notification
@@ -206,66 +253,112 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell;
-    if (indexPath.row == 0) {
-        cell = [tableView
-                dequeueReusableCellWithIdentifier:@"REPEAT" forIndexPath:indexPath];
-        NSString *detailString = @"";
-        for (int i=0; i<7; i++) {
-            if ([_checkArray[i] isEqualToString:@"check"]) {
-                if (i==0) {
-                    detailString = [detailString stringByAppendingString:@"Sun "];
-                }else if (i==1){
-                    detailString = [detailString stringByAppendingString:@"Mon "];
-                }else if (i==2){
-                    detailString = [detailString stringByAppendingString:@"Tue "];
-                }else if (i==3){
-                    detailString = [detailString stringByAppendingString:@"Wed "];
-                }else if (i==4){
-                    detailString = [detailString stringByAppendingString:@"Thu "];
-                }else if (i==5){
-                    detailString = [detailString stringByAppendingString:@"Fri "];
-                }else if (i==6){
-                    detailString = [detailString stringByAppendingString:@"Sat "];
+    if (self.alarmData != nil) {
+        UITableViewCell *cell;
+        if (indexPath.row == 0) {
+            cell = [tableView
+                    dequeueReusableCellWithIdentifier:@"REPEAT" forIndexPath:indexPath];
+            NSString *detailString = @"";
+            NSArray *repeat = [self.alarmData valueForKey:@"repeat"];
+            for (int i=0; i<7; i++) {
+                if ([repeat[i] isEqualToString:@"check"]) {
+                    if (i==0) {
+                        detailString = [detailString stringByAppendingString:@"Sun "];
+                    }else if (i==1){
+                        detailString = [detailString stringByAppendingString:@"Mon "];
+                    }else if (i==2){
+                        detailString = [detailString stringByAppendingString:@"Tue "];
+                    }else if (i==3){
+                        detailString = [detailString stringByAppendingString:@"Wed "];
+                    }else if (i==4){
+                        detailString = [detailString stringByAppendingString:@"Thu "];
+                    }else if (i==5){
+                        detailString = [detailString stringByAppendingString:@"Fri "];
+                    }else if (i==6){
+                        detailString = [detailString stringByAppendingString:@"Sat "];
+                    }
                 }
             }
+            if ([detailString isEqualToString:@""]) {
+                detailString = @"Never";
+            }
+            if (detailString.length > 24) {
+                detailString = @"Every day";
+            }
+            cell.detailTextLabel.text = detailString;
+            
+        }else if (indexPath.row == 1){
+            cell = [tableView
+                    dequeueReusableCellWithIdentifier:@"LABEL" forIndexPath:indexPath];
+            cell.detailTextLabel.text = [self.alarmData valueForKey:@"label"];
+        }else {
+            cell = [tableView
+                    dequeueReusableCellWithIdentifier:@"RINGTONE" forIndexPath:indexPath];
+            cell.detailTextLabel.text = [self.alarmData valueForKey:@"song"];
         }
-        if ([detailString isEqualToString:@""]) {
-            detailString = @"Never";
-        }
-        if (detailString.length > 24) {
-            detailString = @"Every day";
-        }
-        cell.detailTextLabel.text = detailString;
+        cell.backgroundColor = [UIColor clearColor];
         
-    }else if (indexPath.row == 1){
-        cell = [tableView
-                dequeueReusableCellWithIdentifier:@"LABEL" forIndexPath:indexPath];
-        if ([self.alarmLabel isEqualToString:@""]) {
-            self.alarmLabel = @"Alarm";
+        return cell;
+    }else{ //---------------------------------------------------
+        UITableViewCell *cell;
+        if (indexPath.row == 0) {
+            cell = [tableView
+                    dequeueReusableCellWithIdentifier:@"REPEAT" forIndexPath:indexPath];
+            NSString *detailString = @"";
+            for (int i=0; i<7; i++) {
+                if ([_checkArray[i] isEqualToString:@"check"]) {
+                    if (i==0) {
+                        detailString = [detailString stringByAppendingString:@"Sun "];
+                    }else if (i==1){
+                        detailString = [detailString stringByAppendingString:@"Mon "];
+                    }else if (i==2){
+                        detailString = [detailString stringByAppendingString:@"Tue "];
+                    }else if (i==3){
+                        detailString = [detailString stringByAppendingString:@"Wed "];
+                    }else if (i==4){
+                        detailString = [detailString stringByAppendingString:@"Thu "];
+                    }else if (i==5){
+                        detailString = [detailString stringByAppendingString:@"Fri "];
+                    }else if (i==6){
+                        detailString = [detailString stringByAppendingString:@"Sat "];
+                    }
+                }
+            }
+            if ([detailString isEqualToString:@""]) {
+                detailString = @"Never";
+            }
+            if (detailString.length > 24) {
+                detailString = @"Every day";
+            }
+            cell.detailTextLabel.text = detailString;
+            
+        }else if (indexPath.row == 1){
+            cell = [tableView
+                    dequeueReusableCellWithIdentifier:@"LABEL" forIndexPath:indexPath];
+            if ([self.alarmLabel isEqualToString:@""]) {
+                self.alarmLabel = @"Alarm";
+            }
+            cell.detailTextLabel.text = self.alarmLabel;
+            
+            
+        }else {
+            cell = [tableView
+                    dequeueReusableCellWithIdentifier:@"RINGTONE" forIndexPath:indexPath];
+            if ([self.songName isEqualToString:@""]) {
+                self.songName = @"Default";
+            }
+            cell.detailTextLabel.text = self.songName;
         }
-        cell.detailTextLabel.text = self.alarmLabel;
+        cell.backgroundColor = [UIColor clearColor];
         
-        
-    }else {
-        cell = [tableView
-                dequeueReusableCellWithIdentifier:@"RINGTONE" forIndexPath:indexPath];
+        return cell;
     }
-    cell.backgroundColor = [UIColor clearColor];
     
-    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    if ([cell.reuseIdentifier isEqualToString:@"REPEAT"]) {
-        //[self performSegueWithIdentifier:@"" sender:self];
-    }else if ([cell.reuseIdentifier isEqualToString:@"LABLE"]){
-        
-    }else{
-        
-    }
+
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

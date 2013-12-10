@@ -20,6 +20,7 @@
 @interface FirstViewController () {
     float preOffset;
     BOOL blockTapCell;
+    NSIndexPath *tapedIndexPath;
 }
 @end
 
@@ -63,6 +64,11 @@
         if ([[[[segue destinationViewController] viewControllers] objectAtIndex:0] respondsToSelector:@selector(setDelegate:)]) {
             [[[[segue destinationViewController] viewControllers] objectAtIndex:0] setValue:self forKey:@"delegate"];
         }
+    }else {
+        [[[[segue destinationViewController] viewControllers] objectAtIndex:0] setValue:self forKey:@"delegate"];
+        
+        [[[[segue destinationViewController] viewControllers] objectAtIndex:0]
+            setValue:_clockArray[tapedIndexPath.row] forKey:@"alarmData"];
     }
 }
 
@@ -202,18 +208,24 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    if (!blockTapCell) {
-        [self.tableView setContentOffset:CGPointMake(0, 100*indexPath.row) animated:YES];
-        blockTapCell = YES;
-        self.tableView.scrollEnabled = NO;
-    }else {
-        [self.tableView setContentOffset:CGPointMake(0, preOffset) animated:YES];
-        blockTapCell = NO;
-        self.tableView.scrollEnabled = YES;
+//    if (!blockTapCell) {
+//        [self.tableView setContentOffset:CGPointMake(0, 100*indexPath.row) animated:YES];
+//        blockTapCell = YES;
+//        self.tableView.scrollEnabled = NO;
+//    }else {
+//        [self.tableView setContentOffset:CGPointMake(0, preOffset) animated:YES];
+//        blockTapCell = NO;
+//        self.tableView.scrollEnabled = YES;
+//    }
+//    preOffset = self.tableView.contentOffset.y;
+//    NSLog(@"preOffset:%f",self.tableView.contentOffset.y);
+    
+    if (indexPath.row == _clockArray.count-1) {
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+        return;
     }
-    preOffset = self.tableView.contentOffset.y;
-    NSLog(@"preOffset:%f",self.tableView.contentOffset.y);
+    tapedIndexPath = indexPath;
+    [self performSegueWithIdentifier:@"EditClockSegue" sender:self];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {

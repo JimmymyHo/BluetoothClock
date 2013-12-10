@@ -18,5 +18,8 @@
 
 @property (nonatomic, strong) NSArray *checkArray;
 @property (nonatomic, strong) NSString *alarmLabel;
+@property (nonatomic, strong) NSString *songName;
+
+@property (nonatomic, strong) NSDictionary *alarmData; //edit clock
 
 @end

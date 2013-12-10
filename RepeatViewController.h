@@ -12,4 +12,5 @@
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) id delegate;
 @property (nonatomic, strong) NSMutableArray *checkArray;
+@property (nonatomic, strong) NSString *isEdit;
 @end
