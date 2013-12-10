@@ -40,6 +40,7 @@
     [self setupInitData];
     
     if (self.alarmData != nil) { //edit old alarm
+        
         self.navigationItem.title = @"Edit Alarm";
         if ([[self.alarmData valueForKey:@"AMPM"] isEqualToString:@"AM"]) {
             [self.pickerView selectRow:0 inComponent:0 animated:NO];
@@ -50,6 +51,18 @@
                             [[self.alarmData valueForKey:@"hour"] intValue]) inComponent:1 animated:NO];
         [self.pickerView selectRow:(1000-40+
                             [[self.alarmData valueForKey:@"mins"] intValue]) inComponent:2 animated:NO];
+        
+        NSArray *keys = [NSArray arrayWithObjects:@"hour",@"mins",@"AMPM",nil];
+        NSArray *values = [NSArray arrayWithObjects:[self.alarmData valueForKey:@"hour"],
+                                                    [self.alarmData valueForKey:@"mins"],
+                                                    [self.alarmData valueForKey:@"AMPM"],nil];
+        
+        setTime = [NSMutableDictionary dictionaryWithObjects:values forKeys:keys];
+        
+        self.checkArray = [self.alarmData valueForKey:@"repeat"];
+        self.alarmLabel = [self.alarmData valueForKey:@"label"];
+        self.songName = [self.alarmData valueForKey:@"song"];
+        
     }else { //add new alarm
         self.navigationItem.title = @"Add Alarm";
         nowTime = [self getNowTime];
@@ -138,9 +151,6 @@
 
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if (self.alarmData != nil) {
-
-    }else {
         if ([segue.identifier isEqualToString:@"REPEAT"]) {
             [segue.destinationViewController setValue:self forKey:@"delegate"];
             [segue.destinationViewController setValue:_checkArray forKey:@"checkArray"];
@@ -151,7 +161,6 @@
             [segue.destinationViewController setValue:self forKey:@"delegate"];
             [segue.destinationViewController setValue:_songName forKey:@"songName"];
         }
-    }
 }
 
 -(IBAction)cancelButtonPressed:(id)sender {
@@ -161,10 +170,12 @@
 -(IBAction)saveButtonPressed:(id)sender {
     
     [self createNotificationData];
-    
-    //set delegate value
-    if ([self.delegate respondsToSelector:@selector(setAddClockInfo:)]) {
-        [self.delegate setValue:setTime forKey:@"addClockInfo"];
+    if (self.alarmData == nil) {
+        if ([self.delegate respondsToSelector:@selector(setAddClockInfo:)]) {
+            [self.delegate setValue:setTime forKey:@"addClockInfo"];
+        }
+    }else {
+        
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }

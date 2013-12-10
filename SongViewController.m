@@ -13,6 +13,7 @@
 {
     NSIndexPath *preIndexPath;
     SystemSoundID soundID;
+    BOOL check;
 }
 @end
 
@@ -44,12 +45,17 @@
         cell = [self.tableView cellForRowAtIndexPath:indexPath];
         if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
             self.songName = cell.textLabel.text;
+            check = YES;
         }
     }
-    
+    if (check == NO) {
+        self.songName = @"Default";
+    }
     if ([self.delegate respondsToSelector:@selector(setSongName:)]) {
         [self.delegate setValue:self.songName forKey:@"songName"];
     }
+    
+    [self stopSound];
 }
 
 - (void)didReceiveMemoryWarning
@@ -100,6 +106,9 @@
     
     if ([cell.textLabel.text isEqualToString:self.songName]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        preIndexPath = indexPath;
+    }else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
     }
     return cell;
 }
@@ -110,7 +119,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
     UITableViewCell *cell;
-
+    NSLog(@"preindex:%i",preIndexPath.row);
     if ([preIndexPath isEqual: indexPath]) {
         cell = [self.tableView cellForRowAtIndexPath:indexPath];
         if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
