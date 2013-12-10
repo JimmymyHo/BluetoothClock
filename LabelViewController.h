@@ -13,5 +13,4 @@
 @property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, weak) id delegate;
 @property (nonatomic, strong) NSString *alarmLabel;
-@property (nonatomic, strong) NSString *isEdit;
 @end

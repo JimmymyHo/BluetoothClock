@@ -139,35 +139,17 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if (self.alarmData != nil) {
-        if ([segue.identifier isEqualToString:@"REPEAT"]) {
-            [segue.destinationViewController setValue:self forKey:@"delegate"];
-            [segue.destinationViewController setValue:[self.alarmData
-                                                       valueForKey:@"repeat"] forKey:@"checkArray"];
-            [segue.destinationViewController setValue:@"YES" forKey:@"isEdit"];
-        }else if ([segue.identifier isEqualToString:@"LABEL"]){
-            [segue.destinationViewController setValue:self forKey:@"delegate"];
-            [segue.destinationViewController setValue:[self.alarmData
-                                                       valueForKey:@"label"] forKey:@"alarmLabel"];
-            [segue.destinationViewController setValue:@"YES" forKey:@"isEdit"];
-        }else if ([segue.identifier isEqualToString:@"SOUND"]){
-            [segue.destinationViewController setValue:self forKey:@"delegate"];
-            [segue.destinationViewController setValue:[self.alarmData
-                                                       valueForKey:@"song"] forKey:@"songName"];
-            [segue.destinationViewController setValue:@"YES" forKey:@"isEdit"];
-        }
+
     }else {
         if ([segue.identifier isEqualToString:@"REPEAT"]) {
             [segue.destinationViewController setValue:self forKey:@"delegate"];
             [segue.destinationViewController setValue:_checkArray forKey:@"checkArray"];
-            [segue.destinationViewController setValue:@"NO" forKey:@"isEdit"];
         }else if ([segue.identifier isEqualToString:@"LABEL"]){
             [segue.destinationViewController setValue:self forKey:@"delegate"];
             [segue.destinationViewController setValue:_alarmLabel forKey:@"alarmLabel"];
-            [segue.destinationViewController setValue:@"NO" forKey:@"isEdit"];
         }else if ([segue.identifier isEqualToString:@"SOUND"]){
             [segue.destinationViewController setValue:self forKey:@"delegate"];
             [segue.destinationViewController setValue:_songName forKey:@"songName"];
-            [segue.destinationViewController setValue:@"NO" forKey:@"isEdit"];
         }
     }
 }
@@ -253,53 +235,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.alarmData != nil) {
-        UITableViewCell *cell;
-        if (indexPath.row == 0) {
-            cell = [tableView
-                    dequeueReusableCellWithIdentifier:@"REPEAT" forIndexPath:indexPath];
-            NSString *detailString = @"";
-            NSArray *repeat = [self.alarmData valueForKey:@"repeat"];
-            for (int i=0; i<7; i++) {
-                if ([repeat[i] isEqualToString:@"check"]) {
-                    if (i==0) {
-                        detailString = [detailString stringByAppendingString:@"Sun "];
-                    }else if (i==1){
-                        detailString = [detailString stringByAppendingString:@"Mon "];
-                    }else if (i==2){
-                        detailString = [detailString stringByAppendingString:@"Tue "];
-                    }else if (i==3){
-                        detailString = [detailString stringByAppendingString:@"Wed "];
-                    }else if (i==4){
-                        detailString = [detailString stringByAppendingString:@"Thu "];
-                    }else if (i==5){
-                        detailString = [detailString stringByAppendingString:@"Fri "];
-                    }else if (i==6){
-                        detailString = [detailString stringByAppendingString:@"Sat "];
-                    }
-                }
-            }
-            if ([detailString isEqualToString:@""]) {
-                detailString = @"Never";
-            }
-            if (detailString.length > 24) {
-                detailString = @"Every day";
-            }
-            cell.detailTextLabel.text = detailString;
-            
-        }else if (indexPath.row == 1){
-            cell = [tableView
-                    dequeueReusableCellWithIdentifier:@"LABEL" forIndexPath:indexPath];
-            cell.detailTextLabel.text = [self.alarmData valueForKey:@"label"];
-        }else {
-            cell = [tableView
-                    dequeueReusableCellWithIdentifier:@"RINGTONE" forIndexPath:indexPath];
-            cell.detailTextLabel.text = [self.alarmData valueForKey:@"song"];
-        }
-        cell.backgroundColor = [UIColor clearColor];
-        
-        return cell;
-    }else{ //---------------------------------------------------
         UITableViewCell *cell;
         if (indexPath.row == 0) {
             cell = [tableView
@@ -352,8 +287,6 @@
         cell.backgroundColor = [UIColor clearColor];
         
         return cell;
-    }
-    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

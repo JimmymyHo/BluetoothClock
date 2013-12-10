@@ -51,10 +51,10 @@
             [_checkArray replaceObjectAtIndex:i withObject:@"uncheck"];
         }
     }
-    
     if ([self.delegate respondsToSelector:@selector(setCheckArray:)]) {
         [self.delegate setValue:_checkArray forKey:@"checkArray"];
     }
+    
 }
 
 - (void)didReceiveMemoryWarning
