@@ -16,6 +16,8 @@
 #define Cell_timeTag 1003
 #define Cell_switchTag 1004
 
+#define Cell_lableTag 1005
+#define repeatLabelTag 10000
 
 @interface FirstViewController () {
     float preOffset;
@@ -69,7 +71,22 @@
         
         [[[[segue destinationViewController] viewControllers] objectAtIndex:0]
             setValue:_clockArray[tapedIndexPath.row] forKey:@"alarmData"];
+        
+        [[[[segue destinationViewController] viewControllers] objectAtIndex:0]
+         setValue:tapedIndexPath forKey:@"editIndexPath"];
     }
+}
+
+- (void)setEditClockInfo:(NSDictionary *)editClockInfo {
+    _editClockInfo = editClockInfo;
+    _clockArray[tapedIndexPath.row] = _editClockInfo;
+    [_clockArray removeObjectAtIndex:_clockArray.count-1];
+    
+    [self reorderClockArray];
+    
+    [_clockArray insertObject:@"addClock" atIndex:_clockArray.count];
+    [self.tableView reloadData];
+    
 }
 
 - (void)setAddClockInfo:(NSDictionary *)addClockInfo {
@@ -77,7 +94,15 @@
     
     [_clockArray insertObject:_addClockInfo atIndex:0];
     [_clockArray removeObjectAtIndex:_clockArray.count-1];
+    
+    [self reorderClockArray];
+    
+    [_clockArray insertObject:@"addClock" atIndex:_clockArray.count];
+    [self.tableView reloadData];
+    
+}
 
+- (void)reorderClockArray {
     //compare AMPM
     _clockArray = [[_clockArray sortedArrayUsingComparator:^NSComparisonResult(id firstObject, id secondObject){
         NSString *first = [firstObject objectForKey:@"AMPM"];
@@ -101,13 +126,6 @@
         }
         
     }] mutableCopy];
-    
-    [_clockArray insertObject:@"addClock" atIndex:_clockArray.count];
-    [self.tableView reloadData];
-    
-//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-//    [self.tableView insertRowsAtIndexPaths:@[indexPath]
-//                          withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (void)reloadTable {
@@ -143,6 +161,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
+    
     if (indexPath.row == [_clockArray count]-1) {
         cell = [tableView
                         dequeueReusableCellWithIdentifier:@"AddClockCell" forIndexPath:indexPath];
@@ -150,10 +169,54 @@
     }else {
         cell = [tableView
                         dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+        for (UIView *view in [cell.contentView subviews]) {
+            if (view.tag == repeatLabelTag) {
+                [view removeFromSuperview];
+            }
+        }
+        
         UIImageView *imageView = (UIImageView*)[cell viewWithTag:Cell_ImageTag];
         UILabel *AMPM = (UILabel*)[cell viewWithTag:Cell_AMPMTag];
         UILabel *time = (UILabel*)[cell viewWithTag:Cell_timeTag];
+        UILabel *label = (UILabel*)[cell viewWithTag:Cell_lableTag];
         UISwitch *switchButton = (UISwitch*)[cell viewWithTag:Cell_switchTag];
+        
+        //set repeat label
+        NSArray *repeatArray;
+        repeatArray = [_clockArray[indexPath.row] valueForKey:@"repeat"];
+        float positionX = 30;
+        float positionY = 78;
+        for (int i=0; i<7; i++) {
+            if ([repeatArray[i] isEqualToString:@"check"]) {
+                positionX += 31;
+                UILabel *repeatLabel = [[UILabel alloc] init];
+                [repeatLabel setFont:[UIFont systemFontOfSize:12]];
+                repeatLabel.textAlignment = NSTextAlignmentCenter;
+                repeatLabel.textColor = [UIColor grayColor];
+                repeatLabel.layer.borderColor = [[UIColor grayColor] CGColor];
+                repeatLabel.layer.borderWidth = 0.7;
+                repeatLabel.frame = CGRectMake(positionX, positionY, 27, 14);
+                repeatLabel.tag = repeatLabelTag;
+                [cell.contentView addSubview:repeatLabel];
+                
+                if (i==0) {
+                    repeatLabel.text = @"Sun";
+                }else if (i==1){
+                    repeatLabel.text = @"Mon";
+                }else if (i==2){
+                    repeatLabel.text = @"Tue";
+                }else if (i==3){
+                    repeatLabel.text = @"Wed";
+                }else if (i==4){
+                    repeatLabel.text = @"Thu";
+                }else if (i==5){
+                    repeatLabel.text = @"Fri";
+                }else if (i==6){
+                    repeatLabel.text = @"Sat";
+                }
+            }
+        }
+
         
         //set switch
         if ([[_clockArray[indexPath.row] valueForKey:@"switch"] isEqualToString:@"on"]) {
@@ -162,17 +225,23 @@
             switchButton.on = NO;
         }
         
+        //set label
+        label.text = [_clockArray[indexPath.row] objectForKey:@"label"];
+        label.textColor = [UIColor grayColor];
+        
         //set time
         AMPM.text = [_clockArray[indexPath.row] objectForKey:@"AMPM"];
-//        AMPM.layer.borderColor = [[UIColor redColor] CGColor];
-//        AMPM.layer.borderWidth = 1.0;
         time.text = [NSString stringWithFormat:@"%@:%@",
                      [_clockArray[indexPath.row] objectForKey:@"hour"],
                      [_clockArray[indexPath.row] objectForKey:@"mins"]];
         
         //set image
+        //AM 6:00 ~ PM 11:00
+        //PM 11:00 ~ PM 3:00
+        //PM 3:00 ~ PM 6:00
+        //PM 6:00 ~ AM 6:00
         if ([[_clockArray[indexPath.row] objectForKey:@"AMPM"] isEqualToString:@"AM"] &&
-            [[_clockArray[indexPath.row] objectForKey:@"hour"] intValue] <= 11 &&
+            [[_clockArray[indexPath.row] objectForKey:@"hour"] intValue] <= 10 &&
             [[_clockArray[indexPath.row] objectForKey:@"hour"] intValue] >= 6) {
             imageView.image = [UIImage imageNamed:@"Weather-01.png"];
         }else if([[_clockArray[indexPath.row] objectForKey:@"AMPM"] isEqualToString:@"AM"] &&
@@ -185,7 +254,7 @@
                   [[_clockArray[indexPath.row] objectForKey:@"hour"] intValue] <= 2){
             imageView.image = [UIImage imageNamed:@"Weather-02.png"];
         }else if (([[_clockArray[indexPath.row] objectForKey:@"AMPM"] isEqualToString:@"PM"] &&
-                   [[_clockArray[indexPath.row] objectForKey:@"hour"] intValue] <= 6)) {
+                   [[_clockArray[indexPath.row] objectForKey:@"hour"] intValue] <= 5)) {
             imageView.image = [UIImage imageNamed:@"Weather-03.png"];
         }else {
             imageView.image = [UIImage imageNamed:@"Weather-04.png"];
@@ -220,8 +289,9 @@
 //    preOffset = self.tableView.contentOffset.y;
 //    NSLog(@"preOffset:%f",self.tableView.contentOffset.y);
     
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
     if (indexPath.row == _clockArray.count-1) {
-        [tableView deselectRowAtIndexPath:indexPath animated:NO];
         return;
     }
     tapedIndexPath = indexPath;
