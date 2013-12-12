@@ -11,6 +11,7 @@
 @interface FirstViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSDictionary* addClockInfo;
+@property (nonatomic, strong) NSDictionary* editClockInfo;
 @property (nonatomic, strong) NSMutableArray *clockArray;
 
 

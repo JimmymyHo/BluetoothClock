@@ -21,5 +21,5 @@
 @property (nonatomic, strong) NSString *songName;
 
 @property (nonatomic, strong) NSDictionary *alarmData; //edit clock
-
+@property (nonatomic, strong) NSIndexPath *editIndexPath;
 @end
