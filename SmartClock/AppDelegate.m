@@ -51,6 +51,7 @@ const uint8_t key0[16] = {0xF0,0xE1,0xD2,0xC3,0xB4,0xA5,0x96,0x87,0x78,0x69,0x5A
     // Handle launching from a notification
     UILocalNotification *locationNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     if (locationNotification) {
+        NSLog(@"DEBUG: didFinishLaunchingWithOptions => %@", locationNotification);
         // Set icon badge number to zero
         application.applicationIconBadgeNumber = 0;
     }
@@ -87,6 +88,10 @@ const uint8_t key0[16] = {0xF0,0xE1,0xD2,0xC3,0xB4,0xA5,0x96,0x87,0x78,0x69,0x5A
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
+    NSLog(@"DEBUG: applicationWillEnterForeground");
+    // Set icon badge number to zero
+    application.applicationIconBadgeNumber = 0;
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -353,34 +358,38 @@ const uint8_t key0[16] = {0xF0,0xE1,0xD2,0xC3,0xB4,0xA5,0x96,0x87,0x78,0x69,0x5A
 {
     NSLog(@"%@", notification.userInfo);
     
-    // Get NSUserDefaults and update
-//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//    NSArray *alarmArray = [userDefaults arrayForKey:@"AlarmArray"];
-//    NSMutableArray *alarmMutableArray = [NSMutableArray arrayWithArray:alarmArray];
-//    
-//    for(NSUInteger i=0; i<[alarmMutableArray count]; i++){
-//        NSDictionary *alarmDict = [alarmMutableArray objectAtIndex:i];
-//        if([[alarmDict objectForKey:@"AlarmIndex"] isEqualToString:[notification.userInfo objectForKey:@"AlarmIndex"]]){
-//            NSMutableDictionary *alarmMutableDict = [alarmDict mutableCopy];
-//            [alarmMutableDict setObject:@"off" forKey:@"AlarmSwitch"];
-//            alarmDict = [NSDictionary dictionaryWithDictionary:alarmMutableDict];
-//            [alarmMutableArray replaceObjectAtIndex:i withObject:alarmDict];
-//            alarmArray = [NSArray arrayWithArray:alarmMutableArray];
-//            [userDefaults setObject:alarmArray forKey:@"AlarmArray"];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *clockArray = [userDefaults valueForKey:@"clockArray"];
+    
+    // Get NSUserDefaults and update switch
+//    for(NSUInteger i=0; i<[clockArray count]; i++){
+//        NSMutableDictionary *clockInfo = [clockArray objectAtIndex:i];
+//        if([[clockInfo objectForKey:@"id"] isEqualToString:[notification.userInfo objectForKey:@"id"]]){
+//            [clockInfo setObject:@"off" forKey:@"switch"];
+//            [clockArray replaceObjectAtIndex:i withObject:clockInfo];
+//            [userDefaults setObject:clockArray forKey:@"clockArray"];
 //            [userDefaults synchronize];
+//            break;
 //        }
 //    }
     
-//    NSLog(@"Update NSUserDefaults : %@", [userDefaults arrayForKey:@"AlarmArray"]);
-    
     UIApplicationState state = [application applicationState];
     if (state == UIApplicationStateActive) {
+        NSLog(@"UIApplicationStateActive");
+        // UITabBar Selected Signal Tab
+        [self.tabVC setSelectedIndex:1];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Smart Alarm"
                                                         message:notification.alertBody
                                                        delegate:self
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
         [alert show];
+    }
+    else { // state == UIApplicationStateInactive
+        NSLog(@"UIApplicationStateInactive");
+        
+        // UITabBar Selected Signal Tab
+        [self.tabVC setSelectedIndex:1];
     }
     
     

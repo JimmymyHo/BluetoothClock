@@ -49,7 +49,6 @@
                                              selector:@selector(saveClockData)
                                                  name:@"saveClockData"
                                                object:nil];
-    
 }
 
 -(void)saveClockData {
@@ -121,12 +120,76 @@
     switchButton = (UISwitch*)[cell viewWithTag: Cell_switchTag];
     if ([[_clockArray[indexPath.row] valueForKey:@"switch"] isEqualToString:@"on"]) {
         [_clockArray[indexPath.row] setValue:@"off" forKey:@"switch"];
+        
+        // Cancel notifications
+        NSMutableDictionary *clockInfo = _clockArray[indexPath.row];
+        NSArray *localNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+        for(NSUInteger i=0; i<[localNotifications count]; i++){
+            UILocalNotification *localNotification = [localNotifications objectAtIndex:i];
+            if([[clockInfo objectForKey:@"id"] isEqualToString:[localNotification.userInfo objectForKey:@"id"]]){
+                NSLog(@"Cancel : %@", [localNotification userInfo]);
+                [[UIApplication sharedApplication] cancelLocalNotification:localNotification];
+            }
+        }
     }else{
         [_clockArray[indexPath.row] setValue:@"on" forKey:@"switch"];
+        
+        //// CreateNotificationData
+        //set dateFormatter
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        NSTimeZone *tz = [NSTimeZone timeZoneWithName:@"Asia/Taipei"];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss aa"];
+        [dateFormatter setTimeZone:tz];
+        [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
+        
+        //get now time
+        NSDate *nowDate = [NSDate new];
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        NSDateComponents *nowDateComponents = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:nowDate];
+        
+        //get setTime value
+        NSString *hour = [_clockArray[indexPath.row] objectForKey:@"hour"];
+        NSString *mins = [_clockArray[indexPath.row] objectForKey:@"mins"];
+        NSString *AMPM = [_clockArray[indexPath.row] objectForKey:@"AMPM"];
+        
+        //create notification time
+        NSDate *pickDate = [dateFormatter dateFromString: [NSString stringWithFormat:@"%d-%d-%d %@:%@:00 %@", [nowDateComponents year], [nowDateComponents month], [nowDateComponents day],hour,mins,AMPM]];
+        
+        //today or tomorrow
+        if ([nowDate compare:pickDate] == NSOrderedDescending) {
+            NSLog(@"nowDate is later than pickDate");
+            pickDate = [pickDate dateByAddingTimeInterval:60*60*24*1];
+        }
+        NSLog(@"%@", [pickDate descriptionWithLocale:[NSLocale systemLocale]]);
+        
+        //create id
+        NSString *alarmIndexString = [NSString stringWithFormat:@"%d_%d", (int)[nowDate timeIntervalSince1970], (int)[pickDate timeIntervalSince1970]];
+        
+        //update clockInfo value
+        [_clockArray[indexPath.row] setValue:alarmIndexString forKey:@"id"];
+        [_clockArray[indexPath.row] setValue:pickDate forKey:@"pickDate"];
+        
+        //// Schedule Notifications
+        // 10 times notification 6 seconds
+        for(int i=0; i<10; i++){
+            // Schedule the notification
+            UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+            localNotification.soundName = UILocalNotificationDefaultSoundName;
+            localNotification.fireDate = [[_clockArray[indexPath.row] objectForKey:@"pickDate"] dateByAddingTimeInterval:i*6];
+            localNotification.alertBody = @"Smart alarm time up";
+            localNotification.alertAction = @"Show me the smart alarm and signal";
+            localNotification.timeZone = [NSTimeZone defaultTimeZone];
+            localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+            localNotification.userInfo = _clockArray[indexPath.row];
+            [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        }
+        
     }
     NSLog(@"row:%i",indexPath.row);
     [self performSelector:@selector(reloadTable) withObject:self afterDelay:0.2];
 }
+
+
 
 #pragma mark - Table View
 

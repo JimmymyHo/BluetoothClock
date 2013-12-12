@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>6446FEE5-2284-4E0D-BF13-581A30D27B5E</string>
+	<string>849A2E74-3327-41B3-AE93-38BE5F703840</string>
 	<key>IDESourceControlProjectName</key>
 	<string>SmartClock</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>2BCE1FF8-229E-4035-AEF9-9824FD20439E</key>
-		<string>https://github.com/JimmymyHo/BluetoothClock.git</string>
+		<key>D56B8ACD-B036-4021-A7A4-8543C47777E8</key>
+		<string>https://github.com/JimmymyHo/BluetoothClock</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>SmartClock.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>2BCE1FF8-229E-4035-AEF9-9824FD20439E</key>
+		<key>D56B8ACD-B036-4021-A7A4-8543C47777E8</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/JimmymyHo/BluetoothClock.git</string>
+	<string>https://github.com/JimmymyHo/BluetoothClock</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>2BCE1FF8-229E-4035-AEF9-9824FD20439E</string>
+	<string>D56B8ACD-B036-4021-A7A4-8543C47777E8</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>2BCE1FF8-229E-4035-AEF9-9824FD20439E</string>
+			<string>D56B8ACD-B036-4021-A7A4-8543C47777E8</string>
 			<key>IDESourceControlWCCName</key>
-			<string>BluetoothClock</string>
+			<string>BluetoothClock-noti</string>
 		</dict>
 	</array>
 </dict>

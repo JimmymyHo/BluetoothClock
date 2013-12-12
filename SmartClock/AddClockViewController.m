@@ -170,11 +170,11 @@
 -(IBAction)saveButtonPressed:(id)sender {
     
     [self createNotificationData];
-    if (self.alarmData == nil) {
+    if (self.alarmData == nil) { // new alarm
         if ([self.delegate respondsToSelector:@selector(setAddClockInfo:)]) {
             [self.delegate setValue:setTime forKey:@"addClockInfo"];
         }
-    }else {
+    }else { // edit old alarm
         
     }
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -221,17 +221,25 @@
     [setTime setValue:self.songName forKey:@"song"];
     NSLog(@"setTime:%@",setTime);
     
-    // Schedule the notification
-    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-    localNotification.soundName = UILocalNotificationDefaultSoundName;
-    localNotification.fireDate = pickDate;
-    localNotification.alertBody = @"Smart alarm time up";
-    //localNotification.alertAction = @"Show me the item";
-    localNotification.timeZone = [NSTimeZone defaultTimeZone];
-    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-    localNotification.userInfo = setTime;
-    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    [self scheduleNotifications];
 }
+
+- (void)scheduleNotifications {
+    // 10 times notification 6 seconds
+    for(int i=0; i<10; i++){
+        // Schedule the notification
+        UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+        localNotification.soundName = UILocalNotificationDefaultSoundName;
+        localNotification.fireDate = [[setTime objectForKey:@"pickDate"] dateByAddingTimeInterval:i*6];
+        localNotification.alertBody = @"Smart alarm time up";
+        localNotification.alertAction = @"Show me the smart alarm and signal";
+        localNotification.timeZone = [NSTimeZone defaultTimeZone];
+        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+        localNotification.userInfo = setTime;
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    }
+}
+
 
 #pragma mark - UITableView method
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
