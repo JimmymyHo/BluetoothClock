@@ -357,6 +357,7 @@ const uint8_t key0[16] = {0xF0,0xE1,0xD2,0xC3,0xB4,0xA5,0x96,0x87,0x78,0x69,0x5A
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
     NSLog(@"%@", notification.userInfo);
+    NSLog(@"didReceiveLocalNotification");
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *clockArray = [userDefaults valueForKey:@"clockArray"];

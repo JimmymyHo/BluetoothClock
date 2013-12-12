@@ -174,8 +174,8 @@
         if ([self.delegate respondsToSelector:@selector(setAddClockInfo:)]) {
             [self.delegate setValue:setTime forKey:@"addClockInfo"];
         }
-    }else { // edit old alarm
-        
+    }else { //edit mode
+        [self.delegate setValue:setTime forKey:@"editClockInfo"];
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
