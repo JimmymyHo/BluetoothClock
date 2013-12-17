@@ -10,6 +10,4 @@
 
 @interface TabBarViewController : UITabBarController
 
-- (void) connectOperation;
-
 @end

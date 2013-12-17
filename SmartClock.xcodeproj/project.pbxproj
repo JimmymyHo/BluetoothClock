@@ -48,6 +48,9 @@
 		32C2ED79184452E300410DB0 /* Weather-01@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32C2ED69184452E300410DB0 /* Weather-01@2x.png */; };
 		32C2ED7B184452E300410DB0 /* Weather-03@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32C2ED6B184452E300410DB0 /* Weather-03@2x.png */; };
 		32C2ED7C184452E300410DB0 /* Weather-04@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32C2ED6C184452E300410DB0 /* Weather-04@2x.png */; };
+		32EDF81F1860A09700F3719A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32EDF81E1860A09700F3719A /* CoreLocation.framework */; };
+		32EDF8211860A09D00F3719A /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32EDF8201860A09D00F3719A /* CoreBluetooth.framework */; };
+		32EDF8241860A8A800F3719A /* ALDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EDF8231860A8A800F3719A /* ALDefaults.m */; };
 		32FE5AAB18608EEE0005CF59 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32FE5AAA18608EEE0005CF59 /* Main.storyboard */; };
 		32FE5AAE18608F260005CF59 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FE5AAD18608F260005CF59 /* AboutViewController.m */; };
 		32FE5AB118608F380005CF59 /* About@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32FE5AB018608F380005CF59 /* About@2x.png */; };
@@ -119,6 +122,10 @@
 		32C2ED69184452E300410DB0 /* Weather-01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Weather-01@2x.png"; sourceTree = "<group>"; };
 		32C2ED6B184452E300410DB0 /* Weather-03@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Weather-03@2x.png"; sourceTree = "<group>"; };
 		32C2ED6C184452E300410DB0 /* Weather-04@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Weather-04@2x.png"; sourceTree = "<group>"; };
+		32EDF81E1860A09700F3719A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		32EDF8201860A09D00F3719A /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		32EDF8221860A8A800F3719A /* ALDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALDefaults.h; sourceTree = "<group>"; };
+		32EDF8231860A8A800F3719A /* ALDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALDefaults.m; sourceTree = "<group>"; };
 		32FE5AAA18608EEE0005CF59 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		32FE5AAC18608F260005CF59 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		32FE5AAD18608F260005CF59 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
@@ -131,6 +138,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32EDF8211860A09D00F3719A /* CoreBluetooth.framework in Frameworks */,
+				32EDF81F1860A09700F3719A /* CoreLocation.framework in Frameworks */,
 				4ABF42C7185807E1006C59E5 /* snfsdk.framework in Frameworks */,
 				32989E7318563C6B00B1A87B /* AudioToolbox.framework in Frameworks */,
 				32095F3E184348C300EA751C /* CoreGraphics.framework in Frameworks */,
@@ -174,6 +183,8 @@
 		32095F3A184348C300EA751C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				32EDF8201860A09D00F3719A /* CoreBluetooth.framework */,
+				32EDF81E1860A09700F3719A /* CoreLocation.framework */,
 				32989E7218563C6B00B1A87B /* AudioToolbox.framework */,
 				32B3C88D184F12950021C51D /* snfsdk.framework */,
 				32095F3B184348C300EA751C /* Foundation.framework */,
@@ -206,6 +217,8 @@
 				32095F7C1843491000EA751C /* SecondViewController.m */,
 				32FE5AAC18608F260005CF59 /* AboutViewController.h */,
 				32FE5AAD18608F260005CF59 /* AboutViewController.m */,
+				32EDF8221860A8A800F3719A /* ALDefaults.h */,
+				32EDF8231860A8A800F3719A /* ALDefaults.m */,
 				32095F53184348C300EA751C /* Images.xcassets */,
 				32095F42184348C300EA751C /* Supporting Files */,
 			);
@@ -426,6 +439,7 @@
 				3258E7211855A93F0034C65E /* RepeatViewController.m in Sources */,
 				32095F801843491000EA751C /* FirstViewController.m in Sources */,
 				3258E7241855A9840034C65E /* LabelViewController.m in Sources */,
+				32EDF8241860A8A800F3719A /* ALDefaults.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

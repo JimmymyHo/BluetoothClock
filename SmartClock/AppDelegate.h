@@ -9,15 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <snfsdk/snfsdk.h>
 #import "TabBarViewController.h"
-@interface AppDelegate : UIResponder <UIApplicationDelegate,LeDeviceManagerDelegate,LeSnfDeviceDelegate>
+#import <CoreLocation/CoreLocation.h>
+@interface AppDelegate : UIResponder <UIApplicationDelegate,CLLocationManagerDelegate>
 {
-    LeDeviceManager *leMgr;
-    NSData *snfFirmwareData;        // firmware update data
-    NSString *leFileName;           // file name for persistent storage dictionary
-    NSMutableDictionary *leDict;    // dictionary used for persistent storage
+    
 }
 
-@property (strong, nonatomic) LeDeviceManager *leMgr;
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) TabBarViewController *tabVC;
 

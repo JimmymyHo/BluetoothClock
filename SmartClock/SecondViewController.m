@@ -11,12 +11,17 @@
 #import <snfsdk/snfsdk.h>
 #include <objc/message.h>
 #import <AudioToolbox/AudioToolbox.h>
+#import "ALDefaults.h"
 
 @interface SecondViewController (){
     AppDelegate *appDelegate;
     BOOL alertBlock;
     NSDictionary *whichAlarm;
     SystemSoundID soundID;
+    
+    NSMutableDictionary *_beacons;
+    CLLocationManager *_locationManager;
+    NSMutableArray *_rangedRegions;
 }
 
 @end
@@ -50,73 +55,97 @@
                                              selector:@selector(RingRingRing:)
                                                  name:@"alarmTimeUp"
                                                object:nil];
+    
+    _beacons = [[NSMutableDictionary alloc] init];
+    
+    // This location manager will be used to demonstrate how to range beacons.
+    _locationManager = [[CLLocationManager alloc] init];
+    _locationManager.delegate = self;
+    
+    // Populate the regions we will range once.
+    _rangedRegions = [NSMutableArray array];
+
+    // Populate the regions we will range once.
+    _rangedRegions = [NSMutableArray array];
+    [[ALDefaults sharedDefaults].supportedProximityUUIDs enumerateObjectsUsingBlock:^(id uuidObj, NSUInteger uuidIdx, BOOL *uuidStop) {
+        NSUUID *uuid = (NSUUID *)uuidObj;
+        CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:[uuid UUIDString]];
+        [_rangedRegions addObject:region];
+    }];
 }
 
-- (NSArray *) deviceList
+- (void)viewDidAppear:(BOOL)animated
 {
-    return appDelegate.leMgr.devList;
+    // Start ranging when the view appears.
+    [_rangedRegions enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        CLBeaconRegion *region = obj;
+        [_locationManager startRangingBeaconsInRegion:region];
+    }];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    // Stop ranging when the view goes away.
+    [_rangedRegions enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        CLBeaconRegion *region = obj;
+        [_locationManager stopRangingBeaconsInRegion:region];
+    }];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region
+{
+    // CoreLocation will call this delegate method at 1 Hz with updated range information.
+    // Beacons will be categorized and displayed by proximity.
+    [_beacons removeAllObjects];
+    NSArray *unknownBeacons = [beacons filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"proximity = %d", CLProximityUnknown]];
+    if([unknownBeacons count])
+        [_beacons setObject:unknownBeacons forKey:[NSNumber numberWithInt:CLProximityUnknown]];
+    
+    NSArray *immediateBeacons = [beacons filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"proximity = %d", CLProximityImmediate]];
+    if([immediateBeacons count])
+        [_beacons setObject:immediateBeacons forKey:[NSNumber numberWithInt:CLProximityImmediate]];
+    
+    NSArray *nearBeacons = [beacons filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"proximity = %d", CLProximityNear]];
+    if([nearBeacons count])
+        [_beacons setObject:nearBeacons forKey:[NSNumber numberWithInt:CLProximityNear]];
+    
+    NSArray *farBeacons = [beacons filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"proximity = %d", CLProximityFar]];
+    if([farBeacons count])
+        [_beacons setObject:farBeacons forKey:[NSNumber numberWithInt:CLProximityFar]];
+    
+  [self refreshDistance];
 }
 
 - (void) refreshDistance
 {
-    if ([self deviceList].count == 0)
+    NSArray *keyArray = [_beacons allKeys];
+    if (keyArray.count==0) {
         return;
+    }
+    NSLog(@"key:%@",keyArray[0]);
+    CLBeacon *beacon = [[_beacons objectForKey:keyArray[0]] objectAtIndex:0];
+    NSLog(@"Major: %@, Minor: %@, Acc: %.2fm", beacon.major, beacon.minor, beacon.accuracy);
+    self.distantLabel.text = [NSString stringWithFormat:@"%.2fm",beacon.accuracy];
     
-    LeDevice *dev = [[self deviceList] objectAtIndex:0];
-    NSString *distance;
-    NSString *state;
-    
-    //update distant
-    if ([dev isKindOfClass:[LeSnfDevice class]])
-    {
-        //d:1.234 -> cancel d:
-        distance = [objc_getAssociatedObject(dev, @"dist") substringFromIndex:2];
-        if (nil != distance){
-            //update image
-            self.distantLabel.text = distance;
-            if ([distance floatValue] > 0.7 || [distance floatValue] < 0)
-                self.imageView.image = [UIImage imageNamed:@"Signal-02"];
-            else if ([distance floatValue] > 0.2 && [distance floatValue] < 0.7)
-                self.imageView.image = [UIImage imageNamed:@"Signal-03"];
-            else{ //arrive
-                self.imageView.image = [UIImage imageNamed:@"Signal-04"];
-                //[self.songImageView stopAnimating];
-                self.songImageView.image = [UIImage imageNamed:@"music-02.png"];
-                
-                if (whichAlarm == nil) {
-                    return;
-                }
-                
-                if (!alertBlock) {
-                    [self playSound];
-                    [self arriveAlart];
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"arriveDestination" object:nil userInfo:whichAlarm];
-                    alertBlock = YES;
-                }
-            }
+    if (beacon.accuracy > 1.5 || beacon.accuracy < 0) {
+        self.imageView.image = [UIImage imageNamed:@"Signal-02"];
+    }else if (beacon.accuracy <= 1.5 && beacon.accuracy > 0.1){
+        self.imageView.image = [UIImage imageNamed:@"Signal-03"];
+    }else{
+        self.imageView.image = [UIImage imageNamed:@"Signal-04"];
+        
+        if (whichAlarm == nil) {
+            return;
         }
-        else
-            self.distantLabel.text = @"";
-    }else
-        self.distantLabel.text = @"";
-    
-    //update connect state
-    if ([dev isKindOfClass:[LeSnfDevice class]])
-    {
-        state = objc_getAssociatedObject(dev, @"constate");
-        if (nil != state) {
-            self.connectLabel.text = state;
-            if ([state isEqualToString:@"disconnected"] || [state isEqualToString:@"connecting"]) {
-                [self animationSignal];
-            }else {
-                //self.imageView.image = [UIImage imageNamed:@"Signal-02.png"];
-                [self.imageView stopAnimating];
-            }
+        
+        if (!alertBlock) {
+            [self playSound];
+            [self arriveAlart];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"arriveDestination" object:nil userInfo:whichAlarm];
+            alertBlock = YES;
         }
-        else
-            self.connectLabel.text = @"";
-    }else
-        self.connectLabel.text = @"";
+    
+    }
 }
 
 -(void) playSound {
@@ -144,9 +173,9 @@
 }
 
 - (void)RingRingRing:(NSNotification*)notification {
-    self.songImageView.animationImages = [NSArray arrayWithObjects:[UIImage imageNamed:@"music-02.png"],[UIImage imageNamed:@"music-01.png"], nil];
-    self.songImageView.animationDuration = 0.5;
-    self.songImageView.animationRepeatCount = 0;
+//    self.songImageView.animationImages = [NSArray arrayWithObjects:[UIImage imageNamed:@"music-02.png"],[UIImage imageNamed:@"music-01.png"], nil];
+//    self.songImageView.animationDuration = 0.5;
+//    self.songImageView.animationRepeatCount = 0;
     //[self.songImageView startAnimating];
     
     whichAlarm = notification.userInfo;

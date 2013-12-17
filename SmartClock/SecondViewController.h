@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface SecondViewController : UIViewController
+#import <CoreLocation/CoreLocation.h>
+@interface SecondViewController : UIViewController <CLLocationManagerDelegate>
 
 @property (nonatomic, strong) IBOutlet UILabel *connectLabel;
 @property (nonatomic, strong) IBOutlet UILabel *distantLabel;
 
 @property (nonatomic, strong) IBOutlet UIImageView *imageView;
 @property (nonatomic, strong) IBOutlet UIImageView *songImageView;
+
 @end

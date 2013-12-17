@@ -44,23 +44,6 @@
 
 }
 
-- (NSArray *) deviceList
-{
-    return appDelegate.leMgr.devList;
-}
-
-- (void)connectOperation{
-    LeDevice *dev = [[self deviceList] objectAtIndex:0];
-    if (dev.shouldBeConnected){
-        NSLog(@"already connected");
-    }
-	else
-	{
-        NSLog(@"connecting...");
-        [dev connect];
-   	}
-}
-
 
 - (void)didReceiveMemoryWarning
 {
