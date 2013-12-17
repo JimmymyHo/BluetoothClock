@@ -14,5 +14,5 @@
 @property (nonatomic, strong) IBOutlet UILabel *distantLabel;
 
 @property (nonatomic, strong) IBOutlet UIImageView *imageView;
-
+@property (nonatomic, strong) IBOutlet UIImageView *songImageView;
 @end

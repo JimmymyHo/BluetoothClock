@@ -19,7 +19,6 @@
 		32095F65184348C400EA751C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32095F63184348C400EA751C /* InfoPlist.strings */; };
 		32095F67184348C400EA751C /* SmartClockTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32095F66184348C400EA751C /* SmartClockTests.m */; };
 		32095F7D1843491000EA751C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 32095F731843491000EA751C /* AppDelegate.m */; };
-		32095F7E1843491000EA751C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32095F741843491000EA751C /* Main.storyboard */; };
 		32095F7F1843491000EA751C /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32095F761843491000EA751C /* TabBarViewController.m */; };
 		32095F801843491000EA751C /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32095F781843491000EA751C /* FirstViewController.m */; };
 		32095F811843491000EA751C /* AddClockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32095F7A1843491000EA751C /* AddClockViewController.m */; };
@@ -49,6 +48,10 @@
 		32C2ED79184452E300410DB0 /* Weather-01@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32C2ED69184452E300410DB0 /* Weather-01@2x.png */; };
 		32C2ED7B184452E300410DB0 /* Weather-03@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32C2ED6B184452E300410DB0 /* Weather-03@2x.png */; };
 		32C2ED7C184452E300410DB0 /* Weather-04@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32C2ED6C184452E300410DB0 /* Weather-04@2x.png */; };
+		32FE5AAB18608EEE0005CF59 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32FE5AAA18608EEE0005CF59 /* Main.storyboard */; };
+		32FE5AAE18608F260005CF59 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FE5AAD18608F260005CF59 /* AboutViewController.m */; };
+		32FE5AB118608F380005CF59 /* About@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32FE5AB018608F380005CF59 /* About@2x.png */; };
+		32FE5AB2186094870005CF59 /* Arrival.caf in Resources */ = {isa = PBXBuildFile; fileRef = 32FE5AAF18608F310005CF59 /* Arrival.caf */; };
 		4ABF42C7185807E1006C59E5 /* snfsdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B3C88D184F12950021C51D /* snfsdk.framework */; };
 /* End PBXBuildFile section */
 
@@ -79,7 +82,6 @@
 		32095F66184348C400EA751C /* SmartClockTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmartClockTests.m; sourceTree = "<group>"; };
 		32095F721843491000EA751C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		32095F731843491000EA751C /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		32095F741843491000EA751C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		32095F751843491000EA751C /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
 		32095F761843491000EA751C /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		32095F771843491000EA751C /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
@@ -117,6 +119,11 @@
 		32C2ED69184452E300410DB0 /* Weather-01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Weather-01@2x.png"; sourceTree = "<group>"; };
 		32C2ED6B184452E300410DB0 /* Weather-03@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Weather-03@2x.png"; sourceTree = "<group>"; };
 		32C2ED6C184452E300410DB0 /* Weather-04@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Weather-04@2x.png"; sourceTree = "<group>"; };
+		32FE5AAA18608EEE0005CF59 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		32FE5AAC18608F260005CF59 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		32FE5AAD18608F260005CF59 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		32FE5AAF18608F310005CF59 /* Arrival.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Arrival.caf; sourceTree = "<group>"; };
+		32FE5AB018608F380005CF59 /* About@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "About@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,7 +189,7 @@
 			children = (
 				32095F721843491000EA751C /* AppDelegate.h */,
 				32095F731843491000EA751C /* AppDelegate.m */,
-				32095F741843491000EA751C /* Main.storyboard */,
+				32FE5AAA18608EEE0005CF59 /* Main.storyboard */,
 				32095F751843491000EA751C /* TabBarViewController.h */,
 				32095F761843491000EA751C /* TabBarViewController.m */,
 				32095F771843491000EA751C /* FirstViewController.h */,
@@ -197,6 +204,8 @@
 				3258E7261855A98C0034C65E /* SongViewController.m */,
 				32095F7B1843491000EA751C /* SecondViewController.h */,
 				32095F7C1843491000EA751C /* SecondViewController.m */,
+				32FE5AAC18608F260005CF59 /* AboutViewController.h */,
+				32FE5AAD18608F260005CF59 /* AboutViewController.m */,
 				32095F53184348C300EA751C /* Images.xcassets */,
 				32095F42184348C300EA751C /* Supporting Files */,
 			);
@@ -206,6 +215,7 @@
 		32095F42184348C300EA751C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				32FE5AAF18608F310005CF59 /* Arrival.caf */,
 				327983631856D935003A7ADC /* Country.wav */,
 				327983641856D935003A7ADC /* Funk.wav */,
 				327983651856D935003A7ADC /* Guitar.wav */,
@@ -244,6 +254,7 @@
 		32C2ED59184452E200410DB0 /* Background */ = {
 			isa = PBXGroup;
 			children = (
+				32FE5AB018608F380005CF59 /* About@2x.png */,
 				32C2ED5A184452E200410DB0 /* Background@2x.png */,
 			);
 			path = Background;
@@ -361,10 +372,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32FE5AB2186094870005CF59 /* Arrival.caf in Resources */,
 				32C2ED6F184452E300410DB0 /* Signal-02@2x.png in Resources */,
 				3251B4BF184CF9D800D6D988 /* Weather-02@2x.png in Resources */,
-				32095F7E1843491000EA751C /* Main.storyboard in Resources */,
 				32C2ED77184452E300410DB0 /* Tab Bar Icon-05@2x.png in Resources */,
+				32FE5AAB18608EEE0005CF59 /* Main.storyboard in Resources */,
 				32C2ED76184452E300410DB0 /* Tab Bar Icon-04@2x.png in Resources */,
 				32095F54184348C300EA751C /* Images.xcassets in Resources */,
 				32C2ED7C184452E300410DB0 /* Weather-04@2x.png in Resources */,
@@ -374,6 +386,7 @@
 				32C2ED6D184452E300410DB0 /* Background@2x.png in Resources */,
 				32C2ED7B184452E300410DB0 /* Weather-03@2x.png in Resources */,
 				32C2ED71184452E300410DB0 /* Signal-04@2x.png in Resources */,
+				32FE5AB118608F380005CF59 /* About@2x.png in Resources */,
 				32095F46184348C300EA751C /* InfoPlist.strings in Resources */,
 				32C2ED70184452E300410DB0 /* Signal-03@2x.png in Resources */,
 				327983681856D935003A7ADC /* Country.wav in Resources */,
@@ -409,6 +422,7 @@
 				32095F7D1843491000EA751C /* AppDelegate.m in Sources */,
 				32095F7F1843491000EA751C /* TabBarViewController.m in Sources */,
 				32095F48184348C300EA751C /* main.m in Sources */,
+				32FE5AAE18608F260005CF59 /* AboutViewController.m in Sources */,
 				3258E7211855A93F0034C65E /* RepeatViewController.m in Sources */,
 				32095F801843491000EA751C /* FirstViewController.m in Sources */,
 				3258E7241855A9840034C65E /* LabelViewController.m in Sources */,

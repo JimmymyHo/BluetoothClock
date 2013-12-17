@@ -48,14 +48,14 @@
             [self.pickerView selectRow:1 inComponent:0 animated:NO];
         }
         [self.pickerView selectRow:(1000-5+
-                            [[self.alarmData valueForKey:@"hour"] intValue]) inComponent:1 animated:NO];
+                                    [[self.alarmData valueForKey:@"hour"] intValue]) inComponent:1 animated:NO];
         [self.pickerView selectRow:(1000-40+
-                            [[self.alarmData valueForKey:@"mins"] intValue]) inComponent:2 animated:NO];
+                                    [[self.alarmData valueForKey:@"mins"] intValue]) inComponent:2 animated:NO];
         
         NSArray *keys = [NSArray arrayWithObjects:@"hour",@"mins",@"AMPM",nil];
         NSArray *values = [NSArray arrayWithObjects:[self.alarmData valueForKey:@"hour"],
-                                                    [self.alarmData valueForKey:@"mins"],
-                                                    [self.alarmData valueForKey:@"AMPM"],nil];
+                           [self.alarmData valueForKey:@"mins"],
+                           [self.alarmData valueForKey:@"AMPM"],nil];
         
         setTime = [NSMutableDictionary dictionaryWithObjects:values forKeys:keys];
         
@@ -84,7 +84,7 @@
         self.alarmLabel = @"";
         self.songName = @"";
     }
-
+    
 }
 
 - (void)setupInitData {
@@ -136,7 +136,7 @@
     }
     return temp;
 #endif
-
+    
 }
 
 - (void)setCheckArray:(NSArray *)checkArray {
@@ -151,16 +151,16 @@
 
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-        if ([segue.identifier isEqualToString:@"REPEAT"]) {
-            [segue.destinationViewController setValue:self forKey:@"delegate"];
-            [segue.destinationViewController setValue:_checkArray forKey:@"checkArray"];
-        }else if ([segue.identifier isEqualToString:@"LABEL"]){
-            [segue.destinationViewController setValue:self forKey:@"delegate"];
-            [segue.destinationViewController setValue:_alarmLabel forKey:@"alarmLabel"];
-        }else if ([segue.identifier isEqualToString:@"SOUND"]){
-            [segue.destinationViewController setValue:self forKey:@"delegate"];
-            [segue.destinationViewController setValue:_songName forKey:@"songName"];
-        }
+    if ([segue.identifier isEqualToString:@"REPEAT"]) {
+        [segue.destinationViewController setValue:self forKey:@"delegate"];
+        [segue.destinationViewController setValue:_checkArray forKey:@"checkArray"];
+    }else if ([segue.identifier isEqualToString:@"LABEL"]){
+        [segue.destinationViewController setValue:self forKey:@"delegate"];
+        [segue.destinationViewController setValue:_alarmLabel forKey:@"alarmLabel"];
+    }else if ([segue.identifier isEqualToString:@"SOUND"]){
+        [segue.destinationViewController setValue:self forKey:@"delegate"];
+        [segue.destinationViewController setValue:_songName forKey:@"songName"];
+    }
 }
 
 -(IBAction)cancelButtonPressed:(id)sender {
@@ -226,16 +226,28 @@
 
 - (void)scheduleNotifications {
     // 10 times notification 6 seconds
-    for(int i=0; i<10; i++){
+    for(int i=0; i<30; i++){
         // Schedule the notification
         UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-        localNotification.soundName = UILocalNotificationDefaultSoundName;
-        localNotification.fireDate = [[setTime objectForKey:@"pickDate"] dateByAddingTimeInterval:i*6];
+        localNotification.fireDate = [[setTime objectForKey:@"pickDate"] dateByAddingTimeInterval:i*5];
         localNotification.alertBody = @"Smart alarm time up";
         localNotification.alertAction = @"Show me the smart alarm and signal";
         localNotification.timeZone = [NSTimeZone defaultTimeZone];
         localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
         localNotification.userInfo = setTime;
+        if ([[setTime objectForKey:@"song"] isEqualToString:@"Default"]) {
+            localNotification.soundName = UILocalNotificationDefaultSoundName;
+        }else if([[setTime objectForKey:@"song"] isEqualToString:@"Country"]){
+            localNotification.soundName = @"Country.wav";
+        }else if([[setTime objectForKey:@"song"] isEqualToString:@"Guitar"]){
+            localNotification.soundName = @"Guitar.wav";
+        }else if([[setTime objectForKey:@"song"] isEqualToString:@"Jazz"]){
+            localNotification.soundName = @"Jazz.wav";
+        }else if([[setTime objectForKey:@"song"] isEqualToString:@"Latin"]){
+            localNotification.soundName = @"Latin.wav";
+        }else if([[setTime objectForKey:@"song"] isEqualToString:@"Funk"]){
+            localNotification.soundName = @"Funk.wav";
+        }
         [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
     }
 }
@@ -249,68 +261,68 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        UITableViewCell *cell;
-        if (indexPath.row == 0) {
-            cell = [tableView
-                    dequeueReusableCellWithIdentifier:@"REPEAT" forIndexPath:indexPath];
-            NSString *detailString = @"";
-            for (int i=0; i<7; i++) {
-                if ([_checkArray[i] isEqualToString:@"check"]) {
-                    if (i==0) {
-                        detailString = [detailString stringByAppendingString:@"Sun "];
-                    }else if (i==1){
-                        detailString = [detailString stringByAppendingString:@"Mon "];
-                    }else if (i==2){
-                        detailString = [detailString stringByAppendingString:@"Tue "];
-                    }else if (i==3){
-                        detailString = [detailString stringByAppendingString:@"Wed "];
-                    }else if (i==4){
-                        detailString = [detailString stringByAppendingString:@"Thu "];
-                    }else if (i==5){
-                        detailString = [detailString stringByAppendingString:@"Fri "];
-                    }else if (i==6){
-                        detailString = [detailString stringByAppendingString:@"Sat "];
-                    }
+    UITableViewCell *cell;
+    if (indexPath.row == 3) {
+        cell = [tableView
+                dequeueReusableCellWithIdentifier:@"REPEAT" forIndexPath:indexPath];
+        NSString *detailString = @"";
+        for (int i=0; i<7; i++) {
+            if ([_checkArray[i] isEqualToString:@"check"]) {
+                if (i==0) {
+                    detailString = [detailString stringByAppendingString:@"Sun "];
+                }else if (i==1){
+                    detailString = [detailString stringByAppendingString:@"Mon "];
+                }else if (i==2){
+                    detailString = [detailString stringByAppendingString:@"Tue "];
+                }else if (i==3){
+                    detailString = [detailString stringByAppendingString:@"Wed "];
+                }else if (i==4){
+                    detailString = [detailString stringByAppendingString:@"Thu "];
+                }else if (i==5){
+                    detailString = [detailString stringByAppendingString:@"Fri "];
+                }else if (i==6){
+                    detailString = [detailString stringByAppendingString:@"Sat "];
                 }
             }
-            if ([detailString isEqualToString:@""]) {
-                detailString = @"Never";
-            }
-            if (detailString.length > 24) {
-                detailString = @"Every day";
-            }
-            cell.detailTextLabel.text = detailString;
-            
-        }else if (indexPath.row == 1){
-            cell = [tableView
-                    dequeueReusableCellWithIdentifier:@"LABEL" forIndexPath:indexPath];
-            if ([self.alarmLabel isEqualToString:@""]) {
-                self.alarmLabel = @"Alarm";
-            }
-            cell.detailTextLabel.text = self.alarmLabel;
-            
-            
-        }else {
-            cell = [tableView
-                    dequeueReusableCellWithIdentifier:@"RINGTONE" forIndexPath:indexPath];
-            if ([self.songName isEqualToString:@""]) {
-                self.songName = @"Default";
-            }
-            cell.detailTextLabel.text = self.songName;
         }
-        cell.backgroundColor = [UIColor clearColor];
+        if ([detailString isEqualToString:@""]) {
+            detailString = @"Never";
+        }
+        if (detailString.length > 24) {
+            detailString = @"Every day";
+        }
+        cell.detailTextLabel.text = detailString;
         
-        return cell;
+    }else if (indexPath.row == 0){
+        cell = [tableView
+                dequeueReusableCellWithIdentifier:@"LABEL" forIndexPath:indexPath];
+        if ([self.alarmLabel isEqualToString:@""]) {
+            self.alarmLabel = @"Alarm";
+        }
+        cell.detailTextLabel.text = self.alarmLabel;
+        
+        
+    }else {
+        cell = [tableView
+                dequeueReusableCellWithIdentifier:@"RINGTONE" forIndexPath:indexPath];
+        if ([self.songName isEqualToString:@""]) {
+            self.songName = @"Default";
+        }
+        cell.detailTextLabel.text = self.songName;
+    }
+    cell.backgroundColor = [UIColor clearColor];
+    
+    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

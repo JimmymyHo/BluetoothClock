@@ -8,7 +8,13 @@
 
 #import "AppDelegate.h"
 #include <objc/message.h>
+#import <AudioToolbox/AudioToolbox.h>
 
+@interface AppDelegate (){
+    SystemSoundID soundID;
+}
+
+@end
 
 @implementation AppDelegate
 @synthesize leMgr;
@@ -18,6 +24,8 @@
 #define BROADCAST_ID_PACKET1    0xE1
 #define BROADCAST_ID_PACKET2    0xD2
 #define BROADCAST_ID_PACKET3    0xC3
+
+
 
 const uint8_t key0[16] = {0xF0,0xE1,0xD2,0xC3,0xB4,0xA5,0x96,0x87,0x78,0x69,0x5A,0x4B,0x3C,0x2D,0x1E,0x0F};
 
@@ -56,6 +64,12 @@ const uint8_t key0[16] = {0xF0,0xE1,0xD2,0xC3,0xB4,0xA5,0x96,0x87,0x78,0x69,0x5A
         application.applicationIconBadgeNumber = 0;
     }
     
+    //add NSNotificaiton observer
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(stopSound)
+                                                 name:@"arriveDestination"
+                                               object:nil];
+    
     return YES;
 }
 
@@ -63,7 +77,7 @@ const uint8_t key0[16] = {0xF0,0xE1,0xD2,0xC3,0xB4,0xA5,0x96,0x87,0x78,0x69,0x5A
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-
+    
 }
 
 
@@ -359,47 +373,33 @@ const uint8_t key0[16] = {0xF0,0xE1,0xD2,0xC3,0xB4,0xA5,0x96,0x87,0x78,0x69,0x5A
     NSLog(@"%@", notification.userInfo);
     NSLog(@"didReceiveLocalNotification");
     
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *clockArray = [userDefaults valueForKey:@"clockArray"];
+    [self.tabVC setSelectedIndex:1];
     
-    // Get NSUserDefaults and update switch
-//    for(NSUInteger i=0; i<[clockArray count]; i++){
-//        NSMutableDictionary *clockInfo = [clockArray objectAtIndex:i];
-//        if([[clockInfo objectForKey:@"id"] isEqualToString:[notification.userInfo objectForKey:@"id"]]){
-//            [clockInfo setObject:@"off" forKey:@"switch"];
-//            [clockArray replaceObjectAtIndex:i withObject:clockInfo];
-//            [userDefaults setObject:clockArray forKey:@"clockArray"];
-//            [userDefaults synchronize];
-//            break;
-//        }
-//    }
+    NSArray *array = [notification.soundName componentsSeparatedByString:@"."];
+    [self playSound:array[0]];
     
-    UIApplicationState state = [application applicationState];
-    if (state == UIApplicationStateActive) {
-        NSLog(@"UIApplicationStateActive");
-        // UITabBar Selected Signal Tab
-        [self.tabVC setSelectedIndex:1];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Smart Alarm"
-                                                        message:notification.alertBody
-                                                       delegate:self
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
-    }
-    else { // state == UIApplicationStateInactive
-        NSLog(@"UIApplicationStateInactive");
-        
-        // UITabBar Selected Signal Tab
-        [self.tabVC setSelectedIndex:1];
-    }
-    
-    
-    // Request to reload table view data
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
+    // ring ring ring
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"alarmTimeUp" object:nil userInfo:notification.userInfo];
     
     // Set icon badge number to zero
     application.applicationIconBadgeNumber = 0;
 }
 
+-(void) playSound:(NSString*)name {
+    NSString *soundPath;
+    
+    if ([name isEqualToString:@"UILocalNotificationDefaultSoundName"]) {
+        soundPath = [[NSBundle mainBundle] pathForResource:@"Voicemail" ofType:@"wav"];
+    }else {
+        soundPath = [[NSBundle mainBundle] pathForResource:name ofType:@"wav"];
+    }
+    
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath: soundPath], &soundID);
+    AudioServicesPlaySystemSound (soundID);
+}
+
+- (void) stopSound {
+    AudioServicesDisposeSystemSoundID(soundID);
+}
 
 @end

@@ -28,11 +28,17 @@
 
 @implementation FirstViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-
+    
     //init
     self.tableView.backgroundColor = [UIColor clearColor];
     
@@ -51,6 +57,11 @@
                                              selector:@selector(saveClockData)
                                                  name:@"saveClockData"
                                                object:nil];
+    //arrive destination, switch off
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(turnOffSwitch:)
+                                                 name:@"arriveDestination"
+                                               object:nil];
 }
 
 -(void)saveClockData {
@@ -58,6 +69,34 @@
     [userDefaults setObject:_clockArray forKey:@"clockArray"];
     [userDefaults synchronize];
     
+}
+
+-(void)turnOffSwitch:(NSNotification*)notificaiton {
+    NSDictionary *whichAlarm = notificaiton.userInfo;
+    NSLog(@"receiveWhichAlarm:%@",whichAlarm);
+    
+    [_clockArray removeObjectAtIndex:_clockArray.count-1];
+    
+    for (NSDictionary *temp in _clockArray) {
+        if ([[temp valueForKey:@"id"] isEqualToString:[whichAlarm valueForKey:@"id"]]) {
+            if ([[temp valueForKey:@"switch"] isEqualToString:@"on"]) {
+                [temp setValue:@"off" forKey:@"switch"];
+                
+                // Cancel notifications
+                NSArray *localNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+                for(NSUInteger i=0; i<[localNotifications count]; i++){
+                    UILocalNotification *localNotification = [localNotifications objectAtIndex:i];
+                    if([[temp objectForKey:@"id"] isEqualToString:[localNotification.userInfo objectForKey:@"id"]]){
+                        NSLog(@"Cancel : %@", [localNotification userInfo]);
+                        [[UIApplication sharedApplication] cancelLocalNotification:localNotification];
+                    }
+                }
+            }
+        }
+    }
+    
+    [_clockArray insertObject:@"addClock" atIndex:_clockArray.count];
+    [self performSelector:@selector(reloadTable) withObject:self afterDelay:0.2];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -69,7 +108,7 @@
         [[[[segue destinationViewController] viewControllers] objectAtIndex:0] setValue:self forKey:@"delegate"];
         
         [[[[segue destinationViewController] viewControllers] objectAtIndex:0]
-            setValue:_clockArray[tapedIndexPath.row] forKey:@"alarmData"];
+         setValue:_clockArray[tapedIndexPath.row] forKey:@"alarmData"];
         
         [[[[segue destinationViewController] viewControllers] objectAtIndex:0]
          setValue:tapedIndexPath forKey:@"editIndexPath"];
@@ -78,6 +117,17 @@
 
 - (void)setEditClockInfo:(NSDictionary *)editClockInfo {
     _editClockInfo = editClockInfo;
+    
+    // Cancel notifications
+    NSArray *localNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    for(NSUInteger i=0; i<[localNotifications count]; i++){
+        UILocalNotification *localNotification = [localNotifications objectAtIndex:i];
+        if([[_clockArray[tapedIndexPath.row] objectForKey:@"id"] isEqualToString:[localNotification.userInfo objectForKey:@"id"]]){
+            NSLog(@"Cancel : %@", [localNotification userInfo]);
+            [[UIApplication sharedApplication] cancelLocalNotification:localNotification];
+        }
+    }
+    
     _clockArray[tapedIndexPath.row] = _editClockInfo;
     [_clockArray removeObjectAtIndex:_clockArray.count-1];
     
@@ -192,7 +242,7 @@
         for(int i=0; i<10; i++){
             // Schedule the notification
             UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-            localNotification.soundName = UILocalNotificationDefaultSoundName;
+            localNotification.soundName = [[_clockArray[indexPath.row] objectForKey:@"song"] stringByAppendingString:@".wav"];
             localNotification.fireDate = [[_clockArray[indexPath.row] objectForKey:@"pickDate"] dateByAddingTimeInterval:i*6];
             localNotification.alertBody = @"Smart alarm time up";
             localNotification.alertAction = @"Show me the smart alarm and signal";
@@ -227,11 +277,11 @@
     
     if (indexPath.row == [_clockArray count]-1) {
         cell = [tableView
-                        dequeueReusableCellWithIdentifier:@"AddClockCell" forIndexPath:indexPath];
+                dequeueReusableCellWithIdentifier:@"AddClockCell" forIndexPath:indexPath];
         
     }else {
         cell = [tableView
-                        dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+                dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
         for (UIView *view in [cell.contentView subviews]) {
             if (view.tag == repeatLabelTag) {
                 [view removeFromSuperview];
@@ -279,7 +329,7 @@
                 }
             }
         }
-
+        
         
         //set switch
         if ([[_clockArray[indexPath.row] valueForKey:@"switch"] isEqualToString:@"on"]) {
@@ -333,24 +383,24 @@
         }
     }
     cell.backgroundColor = [UIColor clearColor];
-
-
+    
+    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (!blockTapCell) {
-//        [self.tableView setContentOffset:CGPointMake(0, 100*indexPath.row) animated:YES];
-//        blockTapCell = YES;
-//        self.tableView.scrollEnabled = NO;
-//    }else {
-//        [self.tableView setContentOffset:CGPointMake(0, preOffset) animated:YES];
-//        blockTapCell = NO;
-//        self.tableView.scrollEnabled = YES;
-//    }
-//    preOffset = self.tableView.contentOffset.y;
-//    NSLog(@"preOffset:%f",self.tableView.contentOffset.y);
+    //    if (!blockTapCell) {
+    //        [self.tableView setContentOffset:CGPointMake(0, 100*indexPath.row) animated:YES];
+    //        blockTapCell = YES;
+    //        self.tableView.scrollEnabled = NO;
+    //    }else {
+    //        [self.tableView setContentOffset:CGPointMake(0, preOffset) animated:YES];
+    //        blockTapCell = NO;
+    //        self.tableView.scrollEnabled = YES;
+    //    }
+    //    preOffset = self.tableView.contentOffset.y;
+    //    NSLog(@"preOffset:%f",self.tableView.contentOffset.y);
     
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
@@ -362,7 +412,7 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-
+    
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -374,8 +424,22 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        // Cancel notifications
+        NSMutableDictionary *clockInfo = _clockArray[indexPath.row];
+        NSArray *localNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+        for(NSUInteger i=0; i<[localNotifications count]; i++){
+            UILocalNotification *localNotification = [localNotifications objectAtIndex:i];
+            if([[clockInfo objectForKey:@"id"] isEqualToString:[localNotification.userInfo objectForKey:@"id"]]){
+                NSLog(@"Cancel : %@", [localNotification userInfo]);
+                [[UIApplication sharedApplication] cancelLocalNotification:localNotification];
+            }
+        }
+        
         [_clockArray removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }
