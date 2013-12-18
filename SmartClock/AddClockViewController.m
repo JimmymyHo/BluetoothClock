@@ -230,8 +230,8 @@
         // Schedule the notification
         UILocalNotification* localNotification = [[UILocalNotification alloc] init];
         localNotification.fireDate = [[setTime objectForKey:@"pickDate"] dateByAddingTimeInterval:i*5];
-        localNotification.alertBody = @"Smart alarm time up";
-        localNotification.alertAction = @"Show me the smart alarm and signal";
+        localNotification.alertBody = @"It's time to leave bed";
+        localNotification.alertAction = @"Open leave bed";
         localNotification.timeZone = [NSTimeZone defaultTimeZone];
         localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
         localNotification.userInfo = setTime;

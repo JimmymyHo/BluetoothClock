@@ -23,6 +23,7 @@
 		32095F801843491000EA751C /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32095F781843491000EA751C /* FirstViewController.m */; };
 		32095F811843491000EA751C /* AddClockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32095F7A1843491000EA751C /* AddClockViewController.m */; };
 		32095F821843491000EA751C /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32095F7C1843491000EA751C /* SecondViewController.m */; };
+		322C5199186166C4000E72CC /* Voicemail.wav in Resources */ = {isa = PBXBuildFile; fileRef = 322C5198186166C4000E72CC /* Voicemail.wav */; };
 		3251B4BF184CF9D800D6D988 /* Weather-02@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3251B4BE184CF9D800D6D988 /* Weather-02@2x.png */; };
 		3258E7211855A93F0034C65E /* RepeatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3258E7201855A93F0034C65E /* RepeatViewController.m */; };
 		3258E7241855A9840034C65E /* LabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3258E7231855A9840034C65E /* LabelViewController.m */; };
@@ -93,6 +94,7 @@
 		32095F7A1843491000EA751C /* AddClockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddClockViewController.m; sourceTree = "<group>"; };
 		32095F7B1843491000EA751C /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		32095F7C1843491000EA751C /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		322C5198186166C4000E72CC /* Voicemail.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Voicemail.wav; sourceTree = "<group>"; };
 		3251B4BE184CF9D800D6D988 /* Weather-02@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Weather-02@2x.png"; path = "SmartClock/Weather-02@2x.png"; sourceTree = SOURCE_ROOT; };
 		3258E71F1855A93F0034C65E /* RepeatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepeatViewController.h; path = ../RepeatViewController.h; sourceTree = "<group>"; };
 		3258E7201855A93F0034C65E /* RepeatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RepeatViewController.m; path = ../RepeatViewController.m; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 		32095F42184348C300EA751C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				322C5198186166C4000E72CC /* Voicemail.wav */,
 				32FE5AAF18608F310005CF59 /* Arrival.caf */,
 				327983631856D935003A7ADC /* Country.wav */,
 				327983641856D935003A7ADC /* Funk.wav */,
@@ -389,6 +392,7 @@
 				32C2ED6F184452E300410DB0 /* Signal-02@2x.png in Resources */,
 				3251B4BF184CF9D800D6D988 /* Weather-02@2x.png in Resources */,
 				32C2ED77184452E300410DB0 /* Tab Bar Icon-05@2x.png in Resources */,
+				322C5199186166C4000E72CC /* Voicemail.wav in Resources */,
 				32FE5AAB18608EEE0005CF59 /* Main.storyboard in Resources */,
 				32C2ED76184452E300410DB0 /* Tab Bar Icon-04@2x.png in Resources */,
 				32095F54184348C300EA751C /* Images.xcassets in Resources */,
