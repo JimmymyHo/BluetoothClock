@@ -239,11 +239,11 @@
         
         //// Schedule Notifications
         // 10 times notification 6 seconds
-        for(int i=0; i<10; i++){
+        for(int i=0; i<20; i++){
             // Schedule the notification
             UILocalNotification* localNotification = [[UILocalNotification alloc] init];
             localNotification.soundName = [[_clockArray[indexPath.row] objectForKey:@"song"] stringByAppendingString:@".wav"];
-            localNotification.fireDate = [[_clockArray[indexPath.row] objectForKey:@"pickDate"] dateByAddingTimeInterval:i*6];
+            localNotification.fireDate = [[_clockArray[indexPath.row] objectForKey:@"pickDate"] dateByAddingTimeInterval:i*5];
             localNotification.alertBody = @"Smart alarm time up";
             localNotification.alertAction = @"Show me the smart alarm and signal";
             localNotification.timeZone = [NSTimeZone defaultTimeZone];
@@ -402,6 +402,14 @@
     //    preOffset = self.tableView.contentOffset.y;
     //    NSLog(@"preOffset:%f",self.tableView.contentOffset.y);
     
+    //clear all notification
+    NSArray *localNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    NSLog(@"notification number:%lu",(unsigned long)localNotifications.count);
+//    for(NSUInteger i=0; i<[localNotifications count]; i++){
+//        UILocalNotification *localNotification = [localNotifications objectAtIndex:i];
+//            NSLog(@"Cancel : %@", [localNotification userInfo]);
+//            [[UIApplication sharedApplication] cancelLocalNotification:localNotification];
+//    }
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
     if (indexPath.row == _clockArray.count-1) {

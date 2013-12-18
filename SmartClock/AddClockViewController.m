@@ -226,7 +226,7 @@
 
 - (void)scheduleNotifications {
     // 10 times notification 6 seconds
-    for(int i=0; i<30; i++){
+    for(int i=0; i<20; i++){
         // Schedule the notification
         UILocalNotification* localNotification = [[UILocalNotification alloc] init];
         localNotification.fireDate = [[setTime objectForKey:@"pickDate"] dateByAddingTimeInterval:i*5];
