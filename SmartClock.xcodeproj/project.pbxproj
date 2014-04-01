@@ -140,9 +140,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4ABF42C7185807E1006C59E5 /* snfsdk.framework in Frameworks */,
 				32EDF8211860A09D00F3719A /* CoreBluetooth.framework in Frameworks */,
 				32EDF81F1860A09700F3719A /* CoreLocation.framework in Frameworks */,
-				4ABF42C7185807E1006C59E5 /* snfsdk.framework in Frameworks */,
 				32989E7318563C6B00B1A87B /* AudioToolbox.framework in Frameworks */,
 				32095F3E184348C300EA751C /* CoreGraphics.framework in Frameworks */,
 				32095F40184348C300EA751C /* UIKit.framework in Frameworks */,
@@ -567,6 +567,7 @@
 					/Users/jimmyho/Documents/SmartClock,
 					/Users/jimmyho/Desktop/BluetoothClock,
 					"/Users/andikan/Dev/objc/BluetoothClock-noti",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SmartClock/SmartClock-Prefix.pch";
@@ -586,6 +587,7 @@
 					/Users/jimmyho/Documents/SmartClock,
 					/Users/jimmyho/Desktop/BluetoothClock,
 					"/Users/andikan/Dev/objc/BluetoothClock-noti",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SmartClock/SmartClock-Prefix.pch";
